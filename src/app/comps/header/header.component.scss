@@ -1,0 +1,9 @@
+@use '../../styles/variables' as *;
+
+.sy-header{
+    display: block;
+    width: 100%;
+    height: 3rem;
+    background-color: $bg-menu;
+    color: $fg-menu;
+}
