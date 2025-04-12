@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+
+.sy-main-menu{
+    display: block;
+    width: 25%;
+    padding-left: 200px;
+    padding-top: 100px;
+}
+
+.sy-main-title{
+    display: inline-block;
+    font-size: 45px;
+    border-bottom: 1px solid $fg-main;
+}
+
+.sy-user-stats{
+    width: 300px;
+}
+
+.sy-user-cat{
+    display: block;
+    border-bottom: 1px solid $fg-main;
+}
+
+.sy-user-cat span{
+    background-color: $fg-main;
+    color: $fg-menu;
+    padding: 2px 10px;
+    margin-right: 10px;
+}
