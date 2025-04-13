@@ -1,0 +1,11 @@
+<div>
+    <div>
+        <form *ngIf="!isLoginInProgress" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <input type="text" formControlName="login" placeholder="Login">
+            <input type="password" formControlName="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
+        <span *ngIf="isLoginInProgress">Login in progress</span>
+        <span style="color: red;">{{error}}</span>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UserService } from '../../Services/UserService';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +10,11 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  userService = inject(UserService);
+
+  userName: string | null = null;
+
+  ngOnInit() {
+    this.userName = this.userService.userName;
+  }
 }
