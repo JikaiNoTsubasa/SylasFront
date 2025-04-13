@@ -1,7 +1,12 @@
-import { HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
+import { inject } from "@angular/core";
+import { catchError, Observable, throwError } from "rxjs";
+import { AuthService } from "./AuthService";
+import { Router } from "@angular/router";
 
 export function provideBearerInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
+    let auth = inject(AuthService);
+    let router = inject(Router);
     let token = localStorage.getItem('token');
     if (token) {
         req = req.clone({
@@ -10,5 +15,13 @@ export function provideBearerInterceptor(req: HttpRequest<any>, next: HttpHandle
             }
         });
     }
-    return next(req);
+    return next(req).pipe(
+        catchError((err: HttpErrorResponse) => {
+          if (err.status === 401) {
+            auth.logout();
+            router.navigate(['/login']);
+          }
+          return throwError(() => err);
+        })
+      );;
 }
