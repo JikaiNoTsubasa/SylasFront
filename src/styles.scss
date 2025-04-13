@@ -41,8 +41,8 @@ body{
 */
 .toast-info {
     background-color: $fg-main !important;
-    color: $fg-menu;
-    border-radius: 0;
-    width: 800px;  /* Ajuste la largeur comme tu veux */
-    font-size: 18px;  /* Agrandit la taille du texte si besoin */
+    color: $fg-menu !important;
+    border-radius: 0 !important;
+    width: 800px !important;  /* Ajuste la largeur comme tu veux */
+    font-size: 18px !important;  /* Agrandit la taille du texte si besoin */
 }
