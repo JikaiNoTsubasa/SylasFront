@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NotificationService } from '../../Services/NotificationService';
 
 @Component({
   selector: 'app-main',
@@ -9,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
 
+  notification = inject(NotificationService);
+
+  ngOnInit(){
+    this.notification.info('Bienvenue sur SylasFront');
+  }
 }
