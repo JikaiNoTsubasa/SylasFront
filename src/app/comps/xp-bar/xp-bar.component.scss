@@ -1,0 +1,33 @@
+@use '../../styles/variables' as *;
+
+.sy-xp-bar-table{
+    width: 100%;
+    color: $fg-main;
+}
+
+.sy-xp-bar {
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: $fg-main-50;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.sy-xp-bar-fill {
+    display: block;
+    height: 100%;
+    background-color: $fg-main;
+}
+
+.sy-xp-level{
+    font-family: 'Orbitron', sans-serif;
+}
+
+.sy-xp-icon{
+    width: 30px;
+    height: 30px;
+    color: $fg-main;
+}

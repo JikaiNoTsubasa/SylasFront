@@ -1,9 +1,18 @@
 <div class="sy-main-menu">
-    <span class="sy-main-title">メインメニュー</span>
+    <div class="sy-main-title">
+        メインメニュー
+        <div class="warning-border"></div>
+    </div>
+    <div class="sy-main-menu-item">
+        My Projects
+    </div>
 </div>
 
 <div class="sy-user-stats">
     <div class="sy-user-cat">
         <span>統計</span>Statistics
     </div>
+    <app-xp-bar [xp]="80" [level]="99" [label]="'FrontEnd'" [icon]="'/images/icon-frontend.svg'"></app-xp-bar>
+    <app-xp-bar [xp]="20" [level]="1" [label]="'BackEnd'"></app-xp-bar>
+    <app-xp-bar [xp]="0" [level]="0" [label]="'Tests'"></app-xp-bar>
 </div>

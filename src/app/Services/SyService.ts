@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ResponseLogin } from "../Models/Requests/ResponseLogin";
 import { Observable } from "rxjs";
+import { User } from "../Models/Database/User";
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +20,12 @@ export class SyService {
         data.append('login', login);
         data.append('password', password);
         return this.http.post<ResponseLogin>(`${this.getEnvUrl()}/api/auth/login`, data);
+    }
+//#endregion
+
+//#region User
+    fetchMyUser(): Observable<User> {
+        return this.http.get<User>(`${this.getEnvUrl()}/api/user/me`);
     }
 //#endregion
 }

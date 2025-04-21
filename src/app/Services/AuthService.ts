@@ -35,8 +35,6 @@ export class AuthService {
             console.error('Token decoding failed', e);
             return null;
           }
-
-        return null;
     }
 
     isLoggedIn(): boolean {
