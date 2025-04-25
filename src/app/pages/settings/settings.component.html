@@ -1,7 +1,30 @@
 <div class="sy-page">
     <tabs>
         <tab icon="fa-solid fa-user" title="Me">
-            <h2>Me</h2>
+            <div *ngIf="!meUser">
+                No user loaded
+            </div>
+            <div *ngIf="meUser" class="grid">
+                <div class="col-6">
+                    <h2>{{meUser.name}}</h2>
+                    <h3>Data</h3>
+                    <span>
+                        {{meUser.email}}
+                    </span>
+
+                </div>
+
+                <div class="col-6">
+                    <div style="width: 100%;">
+                        <h3>Statistics</h3>
+                        <app-xp-bar [xp]="meUser.xpPercentFrontEnd" [level]="meUser.levelFrontEnd" [label]="'FrontEnd'" [icon]="'/images/icon-frontend.svg'"></app-xp-bar>
+                        <app-xp-bar [xp]="meUser.xpPercentBackEnd" [level]="meUser.levelBackEnd" [label]="'BackEnd'" [icon]="'/images/icon-backend.svg'"></app-xp-bar>
+                        <app-xp-bar [xp]="meUser.xpPercentTests" [level]="meUser.levelTests" [label]="'Tests'" [icon]="'/images/icon-tests.svg'"></app-xp-bar>
+                    </div>
+
+                </div>
+
+            </div>
         </tab>
     
         <tab icon="fa-solid fa-toolbox" title="Application">
