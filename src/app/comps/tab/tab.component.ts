@@ -11,6 +11,7 @@ import { TabsComponent } from '../tabs/tabs.component';
 export class TabComponent {
 
   @Input() title: string = 'Default';
+  @Input() icon: string | null = null;
 
   active: boolean = false;
 

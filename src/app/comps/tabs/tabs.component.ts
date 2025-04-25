@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class TabsComponent {
   tabs: TabComponent[] = [];
 
-  
+  activeIdx = 0;
 
   addTab(tab: TabComponent) {
     if (this.tabs.length === 0) {
@@ -25,7 +25,8 @@ export class TabsComponent {
     this.tabs.forEach((tab) => {
       tab.active = false;
       });
-      tab.active = true
+      tab.active = true;
+      this.activeIdx = this.tabs.indexOf(tab);
     }
   }
 }

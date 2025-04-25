@@ -1,0 +1,23 @@
+@use '../../styles/variables' as *;
+
+.sy-tab{
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: $fg-main;
+    color: $fg-menu;
+    cursor: pointer;
+}
+
+.sy-tabs{
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.active{
+    color: $fg-primary;
+}
