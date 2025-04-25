@@ -46,3 +46,19 @@ body{
     width: 800px !important;  /* Ajuste la largeur comme tu veux */
     font-size: 18px !important;  /* Agrandit la taille du texte si besoin */
 }
+
+.sy-button{
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: $fg-main;
+    color: $fg-menu;
+    cursor: pointer;
+}
+
+.sy-button:hover{
+    background-color: $fg-menu;
+    color: $fg-main;
+}

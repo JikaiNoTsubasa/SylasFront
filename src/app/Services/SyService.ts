@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { ResponseLogin } from "../Models/Requests/ResponseLogin";
 import { Observable } from "rxjs";
 import { User } from "../Models/Database/User";
+import { Project } from "../Models/Database/Project";
 
 @Injectable({
     providedIn: 'root'
@@ -26,6 +27,12 @@ export class SyService {
 //#region User
     fetchMyUser(): Observable<User> {
         return this.http.get<User>(`${this.getEnvUrl()}/api/user/me`);
+    }
+//#endregion
+
+//#region Projects
+    fetchMyProjects(): Observable<Project[]> {
+        return this.http.get<Project[]>(`${this.getEnvUrl()}/api/myprojects`);
     }
 //#endregion
 }

@@ -4,11 +4,12 @@ import { UserService } from '../../Services/UserService';
 import { User } from '../../Models/Database/User';
 import { SyService } from '../../Services/SyService';
 import { XpBarComponent } from "../../comps/xp-bar/xp-bar.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [XpBarComponent],
+  imports: [XpBarComponent,RouterModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
