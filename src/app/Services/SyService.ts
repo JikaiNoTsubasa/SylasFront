@@ -28,6 +28,29 @@ export class SyService {
     fetchMyUser(): Observable<User> {
         return this.http.get<User>(`${this.getEnvUrl()}/api/user/me`);
     }
+
+    updateMyUser(email?: string, password?: string, street?: string, city?: string, zipcode?: string, country?: string): Observable<User> {
+        let data = new FormData();
+        if (email){
+            data.append('email', email ?? "");
+        }
+        if (password){
+            data.append('password', password ?? "");
+        }
+        if (street){
+            data.append('street', street ?? "");
+        }
+        if (city){
+            data.append('city', city ?? "");
+        }
+        if (zipcode){
+            data.append('zipcode', zipcode ?? "");
+        }
+        if (country){
+            data.append('country', country ?? "");
+        }
+        return this.http.patch<User>(`${this.getEnvUrl()}/api/user/me`, data);
+    }
 //#endregion
 
 //#region Projects

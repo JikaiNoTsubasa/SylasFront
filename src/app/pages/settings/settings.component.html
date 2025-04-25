@@ -6,11 +6,19 @@
             </div>
             <div *ngIf="meUser" class="grid">
                 <div class="col-6">
-                    <h2>{{meUser.name}}</h2>
-                    <h3>Data</h3>
-                    <span>
-                        {{meUser.email}}
-                    </span>
+                    <div class="w100">
+                        <h2>{{meUser.name}}</h2>
+                        <h3>Data</h3>
+                        <live-text type="email" [text]="meUser.email" (onTextChange)="onMailChange($event)" class="w100"></live-text>
+                        <live-text type="password" [text]="'pwd'" (onTextChange)="onPasswordChange($event)" class="w100"></live-text>
+                        
+                        <table>
+                            <tr>
+                                <td>Street</td>
+                                <td><live-text [text]="meUser.street" (onTextChange)="onStreetChange($event)"></live-text></td>
+                            </tr>
+                        </table>
+                    </div>
 
                 </div>
 
