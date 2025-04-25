@@ -4,6 +4,7 @@ import { ResponseLogin } from "../Models/Requests/ResponseLogin";
 import { Observable } from "rxjs";
 import { User } from "../Models/Database/User";
 import { Project } from "../Models/Database/Project";
+import { DayTime } from "../Models/Database/DayTime";
 
 @Injectable({
     providedIn: 'root'
@@ -56,6 +57,16 @@ export class SyService {
 //#region Projects
     fetchMyProjects(): Observable<Project[]> {
         return this.http.get<Project[]>(`${this.getEnvUrl()}/api/myprojects`);
+    }
+//#endregion
+
+//#region Time
+    fetchMyTime(): Observable<DayTime[]> {
+        return this.http.get<DayTime[]>(`${this.getEnvUrl()}/api/mytime`);
+    }
+
+    fetchMyLatestTimes(): Observable<DayTime[]> {
+        return this.http.get<DayTime[]>(`${this.getEnvUrl()}/api/time/me/latest`);
     }
 //#endregion
 }

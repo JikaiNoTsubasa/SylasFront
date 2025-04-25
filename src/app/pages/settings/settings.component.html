@@ -11,11 +11,23 @@
                         <h3>Data</h3>
                         <live-text type="email" [text]="meUser.email" (onTextChange)="onMailChange($event)" class="w100"></live-text>
                         <live-text type="password" [text]="'pwd'" (onTextChange)="onPasswordChange($event)" class="w100"></live-text>
-                        
+
                         <table>
                             <tr>
                                 <td>Street</td>
                                 <td><live-text [text]="meUser.street" (onTextChange)="onStreetChange($event)"></live-text></td>
+                            </tr>
+                            <tr>
+                                <td>City</td>
+                                <td><live-text [text]="meUser.city" (onTextChange)="onCityChange($event)" class="w100"></live-text></td>
+                            </tr>
+                            <tr>
+                                <td>Zip Code</td>
+                                <td><live-text [text]="meUser.zipcode" (onTextChange)="onZipcodeChange($event)" class="w100"></live-text></td>
+                            </tr>
+                            <tr>
+                                <td>Country</td>
+                                <td><live-text [text]="meUser.country" (onTextChange)="onCountryChange($event)" class="w100"></live-text></td>
                             </tr>
                         </table>
                     </div>
@@ -35,9 +47,23 @@
             </div>
         </tab>
     
+        <tab icon="fa-solid fa-calendar" title="Time">
+            <h2>Time</h2>
+            <div class="grid">
+                <div class="col-6">
+                    <div class="w100">
+                        <h3>Add Time</h3>
+                        <live-text type="date" (onTextChange)="addTime($event)" class="w100"></live-text>
+                        <live-text type="number" (onTextChange)="addTime($event)" class="w100"></live-text>
+                    </div>
+                </div>
+            </div>
+        </tab>
+
         <tab icon="fa-solid fa-toolbox" title="Application">
             <h2>Application</h2>
         </tab>
+
     </tabs>
 
 </div>

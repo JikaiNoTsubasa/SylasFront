@@ -9,6 +9,7 @@
 }
 
 .sy-main-menu-item{
+    text-decoration: none;
     display: block;
     width: 300px;
     margin-top: 20px;
@@ -20,7 +21,6 @@
     // box-shadow: 0 0 15px #00ffd5;
     //clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
     clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
-    
 }
 
 .sy-main-menu-item:hover{

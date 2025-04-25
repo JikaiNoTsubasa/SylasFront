@@ -6,6 +6,7 @@ import { authGuard } from './Services/AuthGuard';
 import { ProjectComponent } from './pages/project/project.component';
 import { ProjectCreateComponent } from './pages/project-create/project-create.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { TimeComponent } from './pages/time/time.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +22,7 @@ export const routes: Routes = [
             {path: 'myprojects', component: ProjectComponent},
             {path: 'newproject', component: ProjectCreateComponent},
             {path: 'settings', component: SettingsComponent},
+            {path: 'mytime', component: TimeComponent},
         ]
     },
     {path: '**', redirectTo: 'login'}

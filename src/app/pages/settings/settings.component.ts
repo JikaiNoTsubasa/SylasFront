@@ -76,4 +76,54 @@ export class SettingsComponent {
       }
     });
   }
+
+  onCityChange(text: string){
+    if (text == this.meUser?.city || text == "") return;
+    this.syService.updateMyUser(undefined, undefined, undefined, text).subscribe({
+      next: (user) => {
+        this.meUser = user;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {
+        this.notService.info("Changed city: "+text);
+      }
+    });
+  }
+
+  onZipcodeChange(text: string){
+    if (text == this.meUser?.zipcode || text == "") return;
+    this.syService.updateMyUser(undefined, undefined, undefined, undefined, text).subscribe({
+      next: (user) => {
+        this.meUser = user;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {
+        this.notService.info("Changed zipcode: "+text);
+      }
+    });
+  }
+
+  onCountryChange(text: string){
+    if (text == this.meUser?.country || text == "") return;
+    this.syService.updateMyUser(undefined, undefined, undefined, undefined, undefined, text).subscribe({
+      next: (user) => {
+        this.meUser = user;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {
+        this.notService.info("Changed country: "+text);
+      }
+    });
+  }
+
+  addTime(text: string){
+    if (text == "") return;
+    console.log(text);
+  }
 }

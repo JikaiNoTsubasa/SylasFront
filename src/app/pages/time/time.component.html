@@ -1,0 +1,31 @@
+<div class="sy-page">
+    <h1>Time</h1>
+    <div class="grid">
+        <div class="col-6">
+            <div class="pad10">
+                <h2>New Time</h2>
+                <form [formGroup]="timeForm">
+                    <input class="sy-input-text w100" style="margin-bottom: 10px;" type="date" formControlName="date">
+                    <input class="sy-input-text w100" style="margin-bottom: 10px;" type="number" formControlName="minutes">
+                    <button class="sy-button" [disabled]="!timeForm.valid">Add Time</button>
+    
+                </form>
+
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="pad10">
+                <h2>History</h2>
+                <span *ngIf="loadingLatestTimes">Loading...</span>
+                <div *ngIf="!loadingLatestTimes && latestTimes">
+                    <div  *ngFor="let time of latestTimes">
+                        {{time.date}} - {{time.minutes}} minutes
+                    </div>
+                </div>
+                <span *ngIf="!loadingLatestTimes && latestTimes != null && latestTimes.length == 0">No times recorded</span>
+            </div>
+
+        </div>
+    </div>
+</div>
