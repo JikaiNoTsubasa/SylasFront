@@ -1,9 +1,11 @@
 import { inject, Injectable } from "@angular/core";
 import { SyService } from "./SyService";
 import { Router } from "@angular/router";
-import { firstValueFrom } from "rxjs";
+import { firstValueFrom, Observable } from "rxjs";
 import { jwtDecode } from "jwt-decode";
 import { JwtPayload } from "../Models/Requests/JwtPayload";
+import { NotificationService } from "./NotificationService";
+import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +14,23 @@ export class AuthService {
     constructor() { }
 
     syService = inject(SyService);
+    oauthService = inject(OAuthService);
     router = inject(Router);
+    notService = inject(NotificationService);
+
+    authConfig: AuthConfig = {
+        issuer: 'https://accounts.google.com',
+        redirectUri: 'http://localhost:4200/auth/callback', // Redirection après login
+        clientId: '508626920995-qv6hteombtuto6nr34549i7hau8o0vru.apps.googleusercontent.com',
+        scope: 'openid profile email',
+        responseType: 'code', // Authorization Code Flow
+        showDebugInformation: true,
+        strictDiscoveryDocumentValidation: false,
+    }
+
+    ngOnInit() {
+        // this.initGoogleLogin();
+    }
 
     async login(login: string, password: string) {
         let res = await firstValueFrom(this.syService.login(login, password));
@@ -20,7 +38,24 @@ export class AuthService {
         return true;
     }
 
+    initGoogleLogin() {
+        this.oauthService.configure(this.authConfig);
+        this.oauthService.loadDiscoveryDocumentAndLogin();
+    }
+
+    loginWithGoogle() {
+        this.initGoogleLogin();
+        this.oauthService.initLoginFlow();
+    }
+
+    async handleCallback() {
+        await this.oauthService.tryLoginCodeFlow();
+        const accessToken = this.oauthService.getAccessToken();
+        return accessToken;
+    }
+    
     logout() {
+        this.oauthService.logOut();
         localStorage.removeItem('token');
         this.router.navigate(['login']);
     }

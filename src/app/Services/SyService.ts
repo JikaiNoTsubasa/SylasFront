@@ -23,6 +23,12 @@ export class SyService {
         data.append('password', password);
         return this.http.post<ResponseLogin>(`${this.getEnvUrl()}/api/auth/login`, data);
     }
+
+    loginAsGoogle(token: string): Observable<ResponseLogin> {
+        let data = new FormData();
+        data.append('accessToken', token);
+        return this.http.post<ResponseLogin>(`${this.getEnvUrl()}/api/auth/google-login`, data);
+    }
 //#endregion
 
 //#region User
@@ -67,6 +73,13 @@ export class SyService {
 
     fetchMyLatestTimes(): Observable<DayTime[]> {
         return this.http.get<DayTime[]>(`${this.getEnvUrl()}/api/time/me/latest`);
+    }
+
+    addTime(date: string, minutes: number): Observable<DayTime> {
+        let data = new FormData();
+        data.append('date', date);
+        data.append('minutes', minutes.toString());
+        return this.http.post<DayTime>(`${this.getEnvUrl()}/api/time`, data);
     }
 //#endregion
 }

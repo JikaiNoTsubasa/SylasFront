@@ -38,4 +38,8 @@ export class LoginComponent {
       this.error = (e as Error).message;
     }
   }
+
+  loginWithGoogle(){
+    this.authService.loginWithGoogle();
+  }
 }

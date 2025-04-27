@@ -45,6 +45,16 @@ export class TimeComponent {
   }
 
   onAddTime(){
-
+    if (!this.timeForm.valid) return;
+    if (this.timeForm.value.date == null || this.timeForm.value.date == undefined || this.timeForm.value.minutes == null || this.timeForm.value.minutes == undefined) return;
+    
+    this.syService.addTime(this.timeForm.value.date, parseFloat(this.timeForm.value.minutes)).subscribe({
+      next: () => {
+        this.refreshMyLatestTimes();
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      }
+    });
   }
 }
