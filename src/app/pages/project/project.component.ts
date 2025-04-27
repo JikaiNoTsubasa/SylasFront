@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-project',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './project.component.html',
-  styleUrl: './project.component.scss'
+    selector: 'app-project',
+    standalone: true,
+    imports: [CommonModule, RouterModule],
+    templateUrl: './project.component.html',
+    styleUrl: './project.component.scss'
 })
 export class ProjectComponent {
 

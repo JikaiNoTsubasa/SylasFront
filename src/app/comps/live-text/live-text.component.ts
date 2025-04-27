@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'live-text',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './live-text.component.html',
-  styleUrl: './live-text.component.scss'
+    selector: 'live-text',
+    standalone: true,
+    imports: [FormsModule],
+    templateUrl: './live-text.component.html',
+    styleUrl: './live-text.component.scss'
 })
 export class LiveTextComponent {
 

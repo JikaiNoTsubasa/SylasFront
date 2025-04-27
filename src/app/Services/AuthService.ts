@@ -20,15 +20,19 @@ export class AuthService {
 
     authConfig: AuthConfig = {
         issuer: 'https://accounts.google.com',
-        redirectUri: 'http://localhost:4200/auth/callback', // Redirection après login
+        redirectUri: 'https://localhost:4200/auth/callback', // Redirection après login
+        tokenEndpoint: 'https://oauth2.googleapis.com/token',
+        loginUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
         clientId: '508626920995-qv6hteombtuto6nr34549i7hau8o0vru.apps.googleusercontent.com',
         scope: 'openid profile email',
         responseType: 'code', // Authorization Code Flow
         showDebugInformation: true,
         strictDiscoveryDocumentValidation: false,
+        disableAtHashCheck: true
     }
 
     ngOnInit() {
+        console.log("Init auth service");
         // this.initGoogleLogin();
     }
 
@@ -43,6 +47,10 @@ export class AuthService {
         this.oauthService.loadDiscoveryDocumentAndLogin();
     }
 
+    loadGoogleConfig() {
+        this.oauthService.configure(this.authConfig);
+    }
+
     loginWithGoogle() {
         this.initGoogleLogin();
         this.oauthService.initLoginFlow();
@@ -55,7 +63,7 @@ export class AuthService {
     }
     
     logout() {
-        this.oauthService.logOut();
+        this.oauthService.revokeTokenAndLogout();
         localStorage.removeItem('token');
         this.router.navigate(['login']);
     }

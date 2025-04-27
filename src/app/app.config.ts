@@ -6,7 +6,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideBearerInterceptor } from './Services/BearerInterceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
-import { provideOAuthClient, provideOAuthResourceServer } from 'angular-oauth2-oidc';
+import { provideOAuthClient } from 'angular-oauth2-oidc';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,10 +19,7 @@ export const appConfig: ApplicationConfig = {
       timeOut: 3000,
       closeButton: true
     }),
-    provideOAuthClient(),
-    provideOAuthResourceServer({
-      allowedUrls: ['http://localhost:5000/api'],
-      sendAccessToken: true,
-    })
+    provideOAuthClient()
   ],
 };
+

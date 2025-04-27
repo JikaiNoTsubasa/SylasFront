@@ -3,11 +3,11 @@ import { TabComponent } from '../tab/tab.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'tabs',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './tabs.component.html',
-  styleUrl: './tabs.component.scss'
+    selector: 'tabs',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: './tabs.component.html',
+    styleUrl: './tabs.component.scss'
 })
 export class TabsComponent {
   tabs: TabComponent[] = [];

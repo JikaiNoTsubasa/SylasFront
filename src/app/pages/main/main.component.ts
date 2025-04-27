@@ -7,11 +7,11 @@ import { XpBarComponent } from "../../comps/xp-bar/xp-bar.component";
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-main',
-  standalone: true,
-  imports: [XpBarComponent,RouterModule],
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+    selector: 'app-main',
+    standalone: true,
+    imports: [XpBarComponent, RouterModule],
+    templateUrl: './main.component.html',
+    styleUrl: './main.component.scss'
 })
 export class MainComponent {
 

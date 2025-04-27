@@ -9,11 +9,11 @@ import { LiveTextComponent } from "../../comps/live-text/live-text.component";
 import { NotificationService } from '../../Services/NotificationService';
 
 @Component({
-  selector: 'app-settings',
-  standalone: true,
-  imports: [TabsComponent, TabComponent, CommonModule, XpBarComponent, LiveTextComponent],
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss'
+    selector: 'app-settings',
+    standalone: true,
+    imports: [TabsComponent, TabComponent, CommonModule, XpBarComponent, LiveTextComponent],
+    templateUrl: './settings.component.html',
+    styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
 

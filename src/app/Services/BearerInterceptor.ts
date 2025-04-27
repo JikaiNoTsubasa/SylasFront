@@ -8,7 +8,7 @@ export function provideBearerInterceptor(req: HttpRequest<any>, next: HttpHandle
     let auth = inject(AuthService);
     let router = inject(Router);
     let token = localStorage.getItem('token');
-    if (token) {
+    if (token && !req.url.includes('.well-known/openid-configuration')) {
         req = req.clone({
             setHeaders: {
                 Authorization: `Bearer ${token}`

@@ -4,11 +4,11 @@ import { AuthService } from '../../Services/AuthService';
 import { SyService } from '../../Services/SyService';
 
 @Component({
-  selector: 'app-callback',
-  standalone: true,
-  imports: [],
-  templateUrl: './callback.component.html',
-  styleUrl: './callback.component.scss'
+    selector: 'app-callback',
+    standalone: true,
+    imports: [],
+    templateUrl: './callback.component.html',
+    styleUrl: './callback.component.scss'
 })
 export class CallbackComponent {
 
@@ -17,7 +17,10 @@ export class CallbackComponent {
   router = inject(Router);
 
   ngOnInit() {
+    console.log("Callback called");
+    this.authService.loadGoogleConfig();
     this.authService.handleCallback().then(token => {
+      console.log("Token: "+token);
       if (token) {
         // ici tu envoies token à ton backend pour l'échanger
         this.syService.loginAsGoogle(token).subscribe(() => {

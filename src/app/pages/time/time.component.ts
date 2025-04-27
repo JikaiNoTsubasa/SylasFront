@@ -6,11 +6,11 @@ import { NotificationService } from '../../Services/NotificationService';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-time',
-  standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
-  templateUrl: './time.component.html',
-  styleUrl: './time.component.scss'
+    selector: 'app-time',
+    standalone: true,
+    imports: [ReactiveFormsModule, CommonModule],
+    templateUrl: './time.component.html',
+    styleUrl: './time.component.scss'
 })
 export class TimeComponent {
 
