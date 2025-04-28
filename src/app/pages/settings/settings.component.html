@@ -14,6 +14,13 @@
 
                         <table>
                             <tr>
+                                <td>
+                                    <img *ngIf="meUser.avatar" [src]="meUser.avatar" width="100px" height="100px"/>
+                                    <span *ngIf="!meUser.avatar">Avatar</span>
+                                </td>
+                                <td><live-text [text]="meUser.avatar" (onTextChange)="onAvatarChange($event)"></live-text></td>
+                            </tr>
+                            <tr>
                                 <td>Street</td>
                                 <td><live-text [text]="meUser.street" (onTextChange)="onStreetChange($event)"></live-text></td>
                             </tr>

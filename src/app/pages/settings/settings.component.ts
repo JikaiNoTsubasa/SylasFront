@@ -62,6 +62,21 @@ export class SettingsComponent {
     });
   }
 
+  onAvatarChange(text: string){
+    if (text == "") return;
+    this.syService.updateMyUser(undefined, undefined, undefined, undefined, undefined, undefined, text).subscribe({
+      next: (user) => {
+        this.meUser = user;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {
+        this.notService.info("Changed avatar");
+      }
+    });
+  }
+
   onStreetChange(text: string){
     if (text == this.meUser?.street || text == "") return;
     this.syService.updateMyUser(undefined, undefined, text).subscribe({

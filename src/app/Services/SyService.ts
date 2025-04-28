@@ -37,7 +37,7 @@ export class SyService {
         return this.http.get<User>(`${this.getEnvUrl()}/api/user/me`);
     }
 
-    updateMyUser(email?: string, password?: string, street?: string, city?: string, zipcode?: string, country?: string): Observable<User> {
+    updateMyUser(email?: string, password?: string, street?: string, city?: string, zipcode?: string, country?: string, avatar?: string): Observable<User> {
         let data = new FormData();
         if (email){
             data.append('email', email ?? "");
@@ -56,6 +56,9 @@ export class SyService {
         }
         if (country){
             data.append('country', country ?? "");
+        }
+        if (avatar){
+            data.append('avatar', avatar ?? "");
         }
         return this.http.patch<User>(`${this.getEnvUrl()}/api/user/me`, data);
     }
