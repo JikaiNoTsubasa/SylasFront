@@ -6,11 +6,13 @@ import { NotificationService } from '../../Services/NotificationService';
 import { CommonModule } from '@angular/common';
 import { ResponseMyTimeInfo } from '../../Models/Requests/ResponseMyTimeInfo';
 import { TohoursPipe } from '../../pipes/tohours.pipe';
+import { BaseChartDirective } from 'ng2-charts';
+import { ChartConfiguration, ChartData } from 'chart.js';
 
 @Component({
     selector: 'app-time',
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule, TohoursPipe],
+    imports: [ReactiveFormsModule, CommonModule, TohoursPipe, BaseChartDirective],
     templateUrl: './time.component.html',
     styleUrl: './time.component.scss'
 })
@@ -29,9 +31,46 @@ export class TimeComponent {
 
   myTimeData: ResponseMyTimeInfo | null = null;
 
+  barChartData: ChartData<'bar'>;
+  barChartOptions: ChartConfiguration<'bar'>['options'] = {
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: {
+      x: {
+        
+      },
+      y: {
+        //min: 10,
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
   ngOnInit(){
     this.refreshMyLatestTimes();
     this.refreshTimeData();
+  }
+
+  refreshChart(){
+    let labels: string[] = [];
+    let data: number[] = [];
+    this.myTimeData?.totalByMonth.forEach((tot) => {
+      labels.push(`${tot.month}-${tot.year}`);
+      data.push(tot.total);
+    });
+    this.barChartData = {
+      labels: labels,
+      datasets: [
+        { 
+          data: data,
+          label: 'Minutes',
+          backgroundColor: ['#1D201D']
+        }
+      ],
+    };
   }
 
   refreshMyLatestTimes(){
@@ -77,7 +116,12 @@ export class TimeComponent {
       },
       error: (err) => {
         this.notService.error(err.message);
+      },
+      complete: () => {
+        this.refreshChart();
+
       }
     })
   }
+
 }

@@ -21,14 +21,14 @@
         <div class="col-4">
             <div class="pad10 centered">
                 <span *ngIf="myTimeData">
-                    Other
+                    <span class="dash-highlight">{{ myTimeData.moyBalance }}</span><br>Moy/Day
                 </span>
             </div>
         </div>
     </div>
 
     <div class="grid">
-        <div class="col-6">
+        <div class="col-4">
             <div class="pad10">
                 <h2>New Time</h2>
                 <form [formGroup]="timeForm" (ngSubmit)="onAddTime()">
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-4">
             <div class="pad10">
                 <h2>History</h2>
                 <span *ngIf="loadingLatestTimes">Loading...</span>
@@ -53,6 +53,13 @@
                 <span *ngIf="!loadingLatestTimes && latestTimes != null && latestTimes.length == 0">No times recorded</span>
             </div>
 
+        </div>
+
+        <div class="col-4">
+            <div class="pad10">
+                <h2>Overtime per Months</h2>
+                <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="'bar'"></canvas>
+            </div>
         </div>
     </div>
 </div>
