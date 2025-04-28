@@ -1,10 +1,37 @@
 <div class="sy-page">
     <h1>Time</h1>
+
+    <div class="grid">
+        <div class="col-4">
+            <div class="pad10 centered">
+                <span *ngIf="myTimeData">
+                    <span class="dash-highlight">{{ myTimeData.totalTimeBalance | tohours }}</span><br>Total
+                </span>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="pad10 centered">
+                <span *ngIf="myTimeData">
+                    <span class="dash-highlight">{{ myTimeData.monthTimeBalance | tohours }}</span><br>This Month
+                </span>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="pad10 centered">
+                <span *ngIf="myTimeData">
+                    Other
+                </span>
+            </div>
+        </div>
+    </div>
+
     <div class="grid">
         <div class="col-6">
             <div class="pad10">
                 <h2>New Time</h2>
-                <form [formGroup]="timeForm">
+                <form [formGroup]="timeForm" (ngSubmit)="onAddTime()">
                     <input class="sy-input-text w100" style="margin-bottom: 10px;" type="date" formControlName="date">
                     <input class="sy-input-text w100" style="margin-bottom: 10px;" type="number" formControlName="minutes">
                     <button class="sy-button" [disabled]="!timeForm.valid">Add Time</button>
@@ -20,7 +47,7 @@
                 <span *ngIf="loadingLatestTimes">Loading...</span>
                 <div *ngIf="!loadingLatestTimes && latestTimes">
                     <div  *ngFor="let time of latestTimes">
-                        {{time.date}} - {{time.minutes}} minutes
+                        {{time.date | date: "dd MMM yyyy"}} - {{time.minutes}} minutes
                     </div>
                 </div>
                 <span *ngIf="!loadingLatestTimes && latestTimes != null && latestTimes.length == 0">No times recorded</span>

@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { User } from "../Models/Database/User";
 import { Project } from "../Models/Database/Project";
 import { DayTime } from "../Models/Database/DayTime";
+import { ResponseMyTimeInfo } from "../Models/Requests/ResponseMyTimeInfo";
 
 @Injectable({
     providedIn: 'root'
@@ -79,7 +80,11 @@ export class SyService {
         let data = new FormData();
         data.append('date', date);
         data.append('minutes', minutes.toString());
-        return this.http.post<DayTime>(`${this.getEnvUrl()}/api/time`, data);
+        return this.http.post<DayTime>(`${this.getEnvUrl()}/api/time/me`, data);
+    }
+
+    getMyTimeInfo(): Observable<ResponseMyTimeInfo>{
+        return this.http.get<ResponseMyTimeInfo>(`${this.getEnvUrl()}/api/time/me/info`)
     }
 //#endregion
 }

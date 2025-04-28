@@ -7,16 +7,11 @@ import { ProjectComponent } from './pages/project/project.component';
 import { ProjectCreateComponent } from './pages/project-create/project-create.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TimeComponent } from './pages/time/time.component';
-import { CallbackComponent } from './auth/callback/callback.component';
 
 export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
-    },
-    {
-        path: 'auth/callback',
-        component: CallbackComponent
     },
     {
         path: '',

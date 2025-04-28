@@ -18,18 +18,7 @@ export class AuthService {
     router = inject(Router);
     notService = inject(NotificationService);
 
-    authConfig: AuthConfig = {
-        issuer: 'https://accounts.google.com',
-        redirectUri: 'https://localhost:4200/auth/callback', // Redirection après login
-        tokenEndpoint: 'https://oauth2.googleapis.com/token',
-        loginUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
-        clientId: '508626920995-qv6hteombtuto6nr34549i7hau8o0vru.apps.googleusercontent.com',
-        scope: 'openid profile email',
-        responseType: 'code', // Authorization Code Flow
-        showDebugInformation: true,
-        strictDiscoveryDocumentValidation: false,
-        disableAtHashCheck: true
-    }
+    
 
     ngOnInit() {
         console.log("Init auth service");
@@ -40,26 +29,6 @@ export class AuthService {
         let res = await firstValueFrom(this.syService.login(login, password));
         localStorage.setItem('token', res.token);
         return true;
-    }
-
-    initGoogleLogin() {
-        this.oauthService.configure(this.authConfig);
-        this.oauthService.loadDiscoveryDocumentAndLogin();
-    }
-
-    loadGoogleConfig() {
-        this.oauthService.configure(this.authConfig);
-    }
-
-    loginWithGoogle() {
-        this.initGoogleLogin();
-        this.oauthService.initLoginFlow();
-    }
-
-    async handleCallback() {
-        await this.oauthService.tryLoginCodeFlow();
-        const accessToken = this.oauthService.getAccessToken();
-        return accessToken;
     }
     
     logout() {
@@ -83,5 +52,5 @@ export class AuthService {
     isLoggedIn(): boolean {
         const payload = this.getUserFromToken();
         return payload != null && Date.now() < payload.exp * 1000;
-      }
+    }
 }
