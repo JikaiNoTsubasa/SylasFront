@@ -5,6 +5,7 @@ import { User } from '../../Models/Database/User';
 import { SyService } from '../../Services/SyService';
 import { XpBarComponent } from "../../comps/xp-bar/xp-bar.component";
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../Services/AuthService';
 
 @Component({
     selector: 'app-main',
@@ -18,6 +19,7 @@ export class MainComponent {
   notification = inject(NotificationService);
   syService = inject(SyService);
   userService = inject(UserService);
+  authService = inject(AuthService);
 
   user: User | null = null;
 
@@ -40,5 +42,9 @@ export class MainComponent {
         this.loading = false;
       }
     });
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }
