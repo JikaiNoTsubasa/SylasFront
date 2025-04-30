@@ -10,10 +10,13 @@ export interface User{
     levelFrontEnd: number;
     levelBackEnd: number;
     levelTests: number;
+    levelManagement: number;
     xpFrontEnd: number;
     xpBackEnd: number;
     xpTests: number;
+    xpManagement: number;
     xpPercentFrontEnd: number;
     xpPercentBackEnd: number;
     xpPercentTests: number;
+    xpPercentManagement: number;
 }

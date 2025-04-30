@@ -11,12 +11,12 @@
 .sy-main-menu-item{
     text-decoration: none;
     display: block;
-    width: 300px;
+    width: 200px;
     margin-top: 20px;
-    height: 2rem;
-    padding-left: 0.5rem;
+    height: 3rem;
+    line-height: 3rem;
     color: $fg-main;
-    text-align: center;
+    padding-left: 100px;
     cursor: pointer;
     // box-shadow: 0 0 15px #00ffd5;
     //clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);

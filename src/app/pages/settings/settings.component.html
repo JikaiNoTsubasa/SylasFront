@@ -15,7 +15,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img *ngIf="meUser.avatar" [src]="meUser.avatar" width="100px" height="100px"/>
+                                    <img *ngIf="meUser.avatar" [src]="meUser.avatar" class="sy-settings-image" width="100px" height="100px"/>
                                     <span *ngIf="!meUser.avatar">Avatar</span>
                                 </td>
                                 <td><live-text [text]="meUser.avatar" (onTextChange)="onAvatarChange($event)"></live-text></td>
@@ -47,6 +47,7 @@
                         <app-xp-bar [xp]="meUser.xpPercentFrontEnd" [level]="meUser.levelFrontEnd" [label]="'FrontEnd'" [icon]="'/images/icon-frontend.svg'"></app-xp-bar>
                         <app-xp-bar [xp]="meUser.xpPercentBackEnd" [level]="meUser.levelBackEnd" [label]="'BackEnd'" [icon]="'/images/icon-backend.svg'"></app-xp-bar>
                         <app-xp-bar [xp]="meUser.xpPercentTests" [level]="meUser.levelTests" [label]="'Tests'" [icon]="'/images/icon-tests.svg'"></app-xp-bar>
+                        <app-xp-bar [xp]="meUser.xpPercentManagement" [level]="meUser.levelManagement" [label]="'Management'" [icon]="'/images/icon-management.svg'"></app-xp-bar>
                     </div>
 
                 </div>
@@ -54,14 +55,11 @@
             </div>
         </tab>
     
-        <tab icon="fa-solid fa-calendar" title="Time">
-            <h2>Time</h2>
+        <tab icon="fa-solid fa-calendar" title="Preferences">
             <div class="grid">
                 <div class="col-6">
-                    <div class="w100">
-                        <h3>Add Time</h3>
-                        <live-text type="date" (onTextChange)="addTime($event)" class="w100"></live-text>
-                        <live-text type="number" (onTextChange)="addTime($event)" class="w100"></live-text>
+                    <div class="pad10 w100">
+                        <h2>Time</h2>
                     </div>
                 </div>
             </div>
