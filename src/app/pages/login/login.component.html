@@ -1,9 +1,15 @@
-<div>
-    <div>
+<div class="login-container">
+    <div class="login-form">
+        <div style="width: 100%; text-align: center;">
+            <img src="/images/sy-icon-no-bg.png" width="100px" height="100px"/>
+        </div>
         <form *ngIf="!isLoginInProgress" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <input type="text" formControlName="login" placeholder="Login">
-            <input type="password" formControlName="password" placeholder="Password">
-            <button type="submit">Login</button>
+            <input type="text" formControlName="login" placeholder="Login" class="sy-input-text w100">
+            <input type="password" formControlName="password" placeholder="Password" class="sy-input-text w100">
+            <div style="width: 100%; text-align: center;">
+                <button type="submit" class="sy-button">Login</button>
+
+            </div>
         </form>
         <span *ngIf="isLoginInProgress">Login in progress</span>
         <span style="color: red;">{{error}}</span>

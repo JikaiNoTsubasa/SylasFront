@@ -19,3 +19,18 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.sy-header-centered{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sy-header-centered img{
+    height: auto;
+    margin-right: 10px;
+}
+
+.sy-header-text{
+    flex: 1;
+}
