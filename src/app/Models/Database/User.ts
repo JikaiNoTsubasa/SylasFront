@@ -1,3 +1,5 @@
+import { Preferences } from "./Preferences";
+
 export interface User{
     id: number;
     name: string;
@@ -19,4 +21,5 @@ export interface User{
     xpPercentBackEnd: number;
     xpPercentTests: number;
     xpPercentManagement: number;
+    preferences: Preferences | null;
 }

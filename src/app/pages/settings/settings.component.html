@@ -59,7 +59,25 @@
             <div class="grid">
                 <div class="col-6">
                     <div class="pad10 w100">
-                        <h2>Time</h2>
+                        <h2>Preferences</h2>
+                        <table>
+                            <tr>
+                                <td>
+                                    Time History
+                                </td>
+                                <td>
+                                    {{ meUser?.preferences?.timeHistory }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Time Chart Month
+                                </td>
+                                <td>
+                                    {{ meUser?.preferences?.timeChartMonth }}
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

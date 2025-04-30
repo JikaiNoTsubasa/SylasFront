@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { XpBarComponent } from '../../comps/xp-bar/xp-bar.component';
 import { LiveTextComponent } from "../../comps/live-text/live-text.component";
 import { NotificationService } from '../../Services/NotificationService';
+import { Preferences } from '../../Models/Database/Preferences';
 
 @Component({
     selector: 'app-settings',
@@ -21,6 +22,7 @@ export class SettingsComponent {
   notService = inject(NotificationService);
 
   meUser: User | null = null;
+  mePreference: Preferences | null = null;
 
   ngOnInit(){
     this.syService.fetchMyUser().subscribe({

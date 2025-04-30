@@ -7,6 +7,7 @@ import { Project } from "../Models/Database/Project";
 import { DayTime } from "../Models/Database/DayTime";
 import { ResponseMyTimeInfo } from "../Models/Requests/ResponseMyTimeInfo";
 import { environment } from "../environment";
+import { Preferences } from "../Models/Database/Preferences";
 
 @Injectable({
     providedIn: 'root'
@@ -62,6 +63,12 @@ export class SyService {
             data.append('avatar', avatar ?? "");
         }
         return this.http.patch<User>(`${this.getEnvUrl()}/api/user/me`, data);
+    }
+//#endregion
+
+//#region Preferences
+    fetchMyPreferences(): Observable<Preferences> {
+        return this.http.get<Preferences>(`${this.getEnvUrl()}/api/preferences/me`);
     }
 //#endregion
 
