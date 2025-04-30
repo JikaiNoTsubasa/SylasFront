@@ -37,6 +37,16 @@
           }
         }
       }
+    },
+    {
+      "label": "Build for Prod",
+      "type": "shell",
+      "command": "ng build --configuration production",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$tsc"]
     }
   ]
 }

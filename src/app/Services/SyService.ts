@@ -6,6 +6,7 @@ import { User } from "../Models/Database/User";
 import { Project } from "../Models/Database/Project";
 import { DayTime } from "../Models/Database/DayTime";
 import { ResponseMyTimeInfo } from "../Models/Requests/ResponseMyTimeInfo";
+import { environment } from "../environment";
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class SyService {
     constructor(private http: HttpClient) { }
 
     getEnvUrl(): string{
-        return sessionStorage.getItem('env') ?? 'http://localhost:5222';
+        return sessionStorage.getItem('env') ?? environment.apiUrl;
     }
 
 //#region Login
