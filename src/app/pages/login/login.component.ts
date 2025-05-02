@@ -4,18 +4,22 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SyService } from '../../Services/SyService';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/AuthService';
+import { UserService } from '../../Services/UserService';
+import { FadeIn } from '../../animations';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     imports: [ReactiveFormsModule, CommonModule],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    styleUrl: './login.component.scss',
+    animations: [FadeIn(800, false)]
 })
 export class LoginComponent {
   syService = inject(SyService);
   authService = inject(AuthService);
   router = inject(Router);
+  userService = inject(UserService);
 
   error = '';
 

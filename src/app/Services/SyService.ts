@@ -8,6 +8,7 @@ import { DayTime } from "../Models/Database/DayTime";
 import { ResponseMyTimeInfo } from "../Models/Requests/ResponseMyTimeInfo";
 import { environment } from "../environment";
 import { Preferences } from "../Models/Database/Preferences";
+import { Customer } from "../Models/Database/Customer";
 
 @Injectable({
     providedIn: 'root'
@@ -75,6 +76,12 @@ export class SyService {
 //#region Projects
     fetchMyProjects(): Observable<Project[]> {
         return this.http.get<Project[]>(`${this.getEnvUrl()}/api/myprojects`);
+    }
+//#endregion
+
+//#region Customers
+    fetchCustomers(): Observable<Customer[]> {
+        return this.http.get<Customer[]>(`${this.getEnvUrl()}/api/customers`);
     }
 //#endregion
 

@@ -1,1 +1,12 @@
-<p>project-create works!</p>
+<div class="sy-page">
+    <h1>New Project</h1>
+    <form>
+        <input type="text" placeholder="Project Name" class="sy-input-text w100">
+        <textarea class="sy-area w100 mb10" placeholder="Description"></textarea>
+        Customer:
+        <select class="sy-input-text w100">
+            <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>
+        </select>
+        <button class="sy-button">Create Project</button>
+    </form>
+</div>

@@ -23,7 +23,8 @@ export const routes: Routes = [
             {path: 'newproject', component: ProjectCreateComponent},
             {path: 'settings', component: SettingsComponent},
             {path: 'mytime', component: TimeComponent},
-        ]
+        ],
+        data: { animation: 'Fade' }
     },
     {path: '**', redirectTo: 'login'}
 ];

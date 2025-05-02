@@ -8,6 +8,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { provideMarkdown } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,7 +22,8 @@ export const appConfig: ApplicationConfig = {
       closeButton: true
     }),
     provideOAuthClient(),
-    provideCharts(withDefaultRegisterables())
+    provideCharts(withDefaultRegisterables()),
+    provideMarkdown()
   ],
 };
 

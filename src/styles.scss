@@ -55,7 +55,8 @@ body{
     display: inline-block;
     padding: 0.5rem 1rem;
     margin-right: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid $fg-main;
     background-color: $fg-main;
     color: $fg-menu;
     cursor: pointer;
@@ -66,8 +67,31 @@ body{
     color: $fg-main;
 }
 
+.sy-link{
+    color: $fg-main;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.sy-link:hover{
+    color: $fg-primary;
+}
+
+.note{
+    padding: 1rem;
+    background-color: $fg-main-50;
+    border-left: 1px solid $fg-main;
+    border-right: 1px solid $fg-main;
+}
+
 .w100{
     width: 100%;
+}
+
+.h100{
+    height: 100%;
 }
 
 .sy-input-text{
@@ -76,15 +100,33 @@ body{
     color: $fg-main;
     border: 0;
     border-left: 5px solid $fg-main;
-    padding-left: 0.2rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem;
     box-sizing: border-box;
     font-family: 'Roboto Mono', sans-serif;
     margin-bottom: 10px;
 }
 
 .sy-input-text:focus{
+    border: 0;
+    outline: none;
+}
+
+.mb10{
+    margin-bottom: 10px;
+}
+
+.sy-area{
+    display: block;
+    background: $fg-main-50;
+    color: $fg-main;
+    border: 0;
+    border-left: 5px solid $fg-main;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+.sy-area:focus{
     border: 0;
     outline: none;
 }
@@ -106,4 +148,25 @@ body{
 .dash-highlight{
     font-size: 35px;
     font-weight: bold;
+}
+
+.scrollable{
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $fg-main rgba(0, 0, 0, 0);
+}
+
+.sy-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.sy-table td, .sy-table th{
+    padding: 5px;
+}
+
+.sy-table th{
+    text-align: left;
+    border-bottom: 1px solid $fg-main;
 }
