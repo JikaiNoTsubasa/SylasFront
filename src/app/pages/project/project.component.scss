@@ -1,0 +1,40 @@
+@use '../../styles/variables' as *;
+
+.sy-project-slot{
+    background-color: $fg-main-50;
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    /* clip-path: polygon(5% 0, 100% 0%, 95% 100%, 0% 100%);*/
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.sy-project-slot:hover{
+    background-color: $fg-main;
+    color: $fg-primary;
+}
+
+.sy-project-title{
+    font-size: 20px;
+}
+
+.sy-star{
+    color: $fg-primary;
+}
+
+.sy-project-desc{
+    font-size: 12px;
+}
+
+.sy-panel-desc{
+    padding: 10px;
+    border-top: 1px solid $fg-main;
+    border-bottom: 1px solid $fg-main;
+}
+
+.sy-panel-desc:hover{
+    background-color: $fg-menu;
+}

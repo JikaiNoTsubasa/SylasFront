@@ -34,3 +34,41 @@
 .sy-header-text{
     flex: 1;
 }
+
+.sy-header-menu{
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.sy-header-submenu{
+    /*
+    border-top: 1px solid $fg-main;
+    border-bottom: 1px solid $fg-main;
+    */
+    padding: 10px;
+    min-width: 200px;
+    position: absolute;
+    display: none;
+    background-color: $fg-main;
+    color: $fg-menu;
+    /*
+    background-color: $fg-main-50;
+    color: $fg-main;
+    */
+    z-index: 1;
+}
+
+.sy-header-menu:hover .sy-header-submenu{
+    display: block;
+}
+
+.sy-header-submenu a{
+    display: block;
+    text-decoration: none;
+    color: $fg-menu;
+}
+
+.sy-header-submenu a:hover{
+    color: $fg-primary;
+}

@@ -3,7 +3,13 @@
         <img src="/images/sy-icon-no-bg.png" width="20px" height="20px"/>
         <div class="sy-header-text">
             <a routerLink="/" class="sy-logo">Sylas</a>
-            {{userService.userName}}
+            <span class="sy-header-menu">
+                {{userService.userName}}
+                <span class="sy-header-submenu">
+                    <a routerLink="/settings">Profile</a>
+                    <a (click)="logout()">Logout</a>
+                </span>
+            </span>
         </div>
     </div>
 </div>

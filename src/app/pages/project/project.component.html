@@ -7,30 +7,47 @@
     <br>
 
     <div class="grid">
-        <div class="col-12">
-            <div *ngIf="projects && projects.length == 0">
-                <table class="sy-table">
-                    <tr>
-                        <th>#ID</th>
-                        <th>Name</th>
-                        <th>Owner</th>
-                    </tr>
-                    <tr *ngFor="let project of projects">
-                        <td style="width: 1%; white-space: nowrap;">{{project.id}}</td>
-                        <td>{{project.name}}</td>
-                        <td>
-                            {{project.owner.name}}
-                        </td>
-                    </tr>
-                </table>
+        <div class="col-6">
+            <div class="pad10">
+                <div *ngIf="projects && projects.length > 0">
+                    <div class="sy-project-slot" *ngFor="let project of projects">
+                        <div class="sy-project-content">
+                            <div class="sy-project-title">
+                                {{project.name}}
+                            </div>
+                            <div class="sy-project-desc">
+                                {{project.description | shrink: 100}}
+                            </div>
+                            <!--
+                            <span class="sy-star">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </span>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div *ngIf="!projects || projects.length > 0">
+            <div *ngIf="!projects || projects.length == 0">
                 <div class="note">
                     No projects found, you can create new projects <a routerLink="/newproject" class="sy-link">here</a>.
 
                 </div>
 
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="pad10">
+                <div class="sy-panel-desc">
+                    <h2>Description</h2>
+                    <p>
+                        Projects present in this view are show if you are the owner of the project, or if you are a member of the project, or if you are assigned to a task related to this project.
+                    </p>
+                </div>
             </div>
         </div>
     </div>

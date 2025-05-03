@@ -4,6 +4,7 @@ import { Customer } from '../../Models/Database/Customer';
 import { NotificationService } from '../../Services/NotificationService';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-project-create',
@@ -16,6 +17,7 @@ export class ProjectCreateComponent {
 
     syService = inject(SyService);
     notService = inject(NotificationService);
+    router = inject(Router);
 
     customers: Customer[] = [];
 
@@ -33,6 +35,19 @@ export class ProjectCreateComponent {
         this.syService.fetchCustomers().subscribe({
             next: (customers) => {
                 this.customers = customers;
+            },
+            error: (e) => {
+                this.notService.error(e.message);
+            },
+            complete: () => {}
+        });
+    }
+
+    createProject(){
+        this.syService.createProject(this.formCreateProject.value.name ?? "Default", this.formCreateProject.value.description ?? "", parseInt(this.formCreateProject.value.customer ?? "0")).subscribe({
+            next: (project) => {
+                this.notService.info("Project created");
+                this.router.navigate(['project', project.id]);
             },
             error: (e) => {
                 this.notService.error(e.message);

@@ -4,17 +4,20 @@ import { Project } from '../../Models/Database/Project';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
+import { NotificationService } from '../../Services/NotificationService';
+import { ShrinkPipe } from "../../pipes/shrink.pipe";
 
 @Component({
     selector: 'app-project',
     standalone: true,
-    imports: [CommonModule, RouterModule, MarkdownModule],
+    imports: [CommonModule, RouterModule, MarkdownModule, ShrinkPipe],
     templateUrl: './project.component.html',
     styleUrl: './project.component.scss'
 })
 export class ProjectComponent {
 
   syService = inject(SyService);
+  notService = inject(NotificationService);
 
   projects: Project[] | null = null;
 
@@ -23,8 +26,12 @@ export class ProjectComponent {
   ngOnInit(){
     this.syService.fetchMyProjects().subscribe({
       next: (projects) => {
-
-      }
+        this.projects = projects;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {}
     });
   }
 }

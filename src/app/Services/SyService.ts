@@ -77,6 +77,18 @@ export class SyService {
     fetchMyProjects(): Observable<Project[]> {
         return this.http.get<Project[]>(`${this.getEnvUrl()}/api/myprojects`);
     }
+
+    fetchProject(id: number): Observable<Project> {
+        return this.http.get<Project>(`${this.getEnvUrl()}/api/project/${id}`);
+    }
+
+    createProject(name: string, description: string, customerId: number): Observable<Project> {
+        let data = new FormData();
+        data.append('name', name);
+        data.append('description', description);
+        data.append('customerId', customerId.toString());
+        return this.http.post<Project>(`${this.getEnvUrl()}/api/project`, data);
+    }
 //#endregion
 
 //#region Customers
