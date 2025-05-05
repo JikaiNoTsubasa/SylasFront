@@ -1,6 +1,9 @@
 @use '../../styles/variables' as *;
 
 .sy-project-slot{
+    text-decoration: none;
+    display: block;
+    color: $fg-main;
     background-color: $fg-main-50;
     height: 100px;
     padding-top: 10px;

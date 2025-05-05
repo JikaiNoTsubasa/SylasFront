@@ -10,7 +10,7 @@
         <div class="col-6">
             <div class="pad10">
                 <div *ngIf="projects && projects.length > 0">
-                    <div class="sy-project-slot" *ngFor="let project of projects">
+                    <a routerLink="/project/{{project.id}}" class="sy-project-slot" *ngFor="let project of projects">
                         <div class="sy-project-content">
                             <div class="sy-project-title">
                                 {{project.name}}
@@ -26,7 +26,7 @@
                             </span>
                             -->
                         </div>
-                    </div>
+                    </a>
                 </div>
 
             </div>
@@ -42,6 +42,13 @@
 
         <div class="col-6">
             <div class="pad10">
+                <div class="sy-panel-desc">
+                    <h2>Filters</h2>
+                    <p>
+                        Use the filters to narrow down the list of projects.
+                    </p>
+                </div>
+                <div style="margin-top: 50px;"></div>
                 <div class="sy-panel-desc">
                     <h2>Description</h2>
                     <p>

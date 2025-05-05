@@ -1,0 +1,37 @@
+<div class="sy-page">
+    <span *ngIf="loading">Loading...</span>
+    <div *ngIf="project" class="grid">
+        <div class="col-8">
+            <div class="pad10">
+                <h1>{{project.name}}</h1>
+                <div>
+                    <button (click)="deleteProject()" class="sy-button">Delete</button>
+                </div>
+                <div style="height: 400px;">
+                    <mk-field [content]="project.description"></mk-field>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="pad10">
+                <h1>Customer</h1>
+                {{project.customer?.name}}
+                <h1>Issues</h1>
+                <button class="sy-button" (click)="newIssue()">Create New</button>
+                <div style="margin-top: 20px;">
+                    <div *ngIf="!project.issues || project.issues.length == 0">No issues</div>
+                    <div *ngIf="project.issues && project.issues.length > 0">
+                        <a routerLink="/issue/{{issue.id}}" class="sy-project-slot" *ngFor="let issue of project.issues">
+                            {{issue.name}}
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -91,6 +91,10 @@ export class SyService {
         data.append('customerId', customerId.toString());
         return this.http.post<ResponseCreateProject>(`${this.getEnvUrl()}/api/project`, data);
     }
+
+    deleteProject(id: number): Observable<Project> {
+        return this.http.delete<Project>(`${this.getEnvUrl()}/api/project/${id}`);
+    }
 //#endregion
 
 //#region Customers

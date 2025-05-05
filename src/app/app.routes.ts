@@ -7,6 +7,7 @@ import { ProjectComponent } from './pages/project/project.component';
 import { ProjectCreateComponent } from './pages/project-create/project-create.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TimeComponent } from './pages/time/time.component';
+import { ProjectViewComponent } from './pages/project-view/project-view.component';
 
 export const routes: Routes = [
     {
@@ -20,11 +21,12 @@ export const routes: Routes = [
         children: [
             {path: '', component: MainComponent},
             {path: 'myprojects', component: ProjectComponent},
+            {path: 'project/:id', component: ProjectViewComponent},
             {path: 'newproject', component: ProjectCreateComponent},
             {path: 'settings', component: SettingsComponent},
             {path: 'mytime', component: TimeComponent},
         ],
         data: { animation: 'Fade' }
     },
-    {path: '**', redirectTo: 'login'}
+    {path: '**', redirectTo: ''}
 ];
