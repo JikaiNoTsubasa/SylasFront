@@ -20,7 +20,7 @@
                 <h1>Customer</h1>
                 {{project.customer?.name}}
                 <h1>Issues</h1>
-                <button class="sy-button" (click)="newIssue()">Create New</button>
+                <button routerLink="/newissue" class="sy-button">Create New</button>
                 <div style="margin-top: 20px;">
                     <div *ngIf="!project.issues || project.issues.length == 0">No issues</div>
                     <div *ngIf="project.issues && project.issues.length > 0">
@@ -35,3 +35,31 @@
         </div>
     </div>
 </div>
+
+<side-panel
+  [isOpen]="panelOpen"
+  (closed)="panelOpen = false"
+  title="New Issue"
+>
+    <form>
+        <table>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type="text" placeholder="Issue Name" class="w100">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Description:
+                </td>
+                <td>
+                    <textarea class="sy-area w100 mb10" style="height: 400px; resize: none;" placeholder="Description"></textarea>
+                </td>
+            </tr>
+        </table>
+      <button class="sy-button">Create Issue</button>
+    </form>
+</side-panel>

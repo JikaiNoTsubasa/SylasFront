@@ -5,11 +5,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Project } from '../../Models/Database/Project';
 import { NotificationService } from '../../Services/NotificationService';
 import { MkFieldComponent } from "../../comps/mk-field/mk-field.component";
+import { SidePanelComponent } from '../../comps/side-panel/side-panel.component';
 
 @Component({
   selector: 'app-project-view',
   standalone: true,
-  imports: [CommonModule, MkFieldComponent, RouterModule],
+  imports: [CommonModule, MkFieldComponent, RouterModule, SidePanelComponent],
   templateUrl: './project-view.component.html',
   styleUrl: './project-view.component.scss'
 })
@@ -23,6 +24,7 @@ export class ProjectViewComponent {
   project: Project | null = null;
 
   loading: boolean = false;
+  panelOpen = false;
 
   ngOnInit(){
     this.refreshProject();
@@ -59,6 +61,6 @@ export class ProjectViewComponent {
   }
 
   newIssue(){
-    
+    this.panelOpen = true;
   }
 }

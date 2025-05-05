@@ -8,6 +8,7 @@ import { ProjectCreateComponent } from './pages/project-create/project-create.co
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TimeComponent } from './pages/time/time.component';
 import { ProjectViewComponent } from './pages/project-view/project-view.component';
+import { IssueCreateComponent } from './pages/issue-create/issue-create.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,7 @@ export const routes: Routes = [
             {path: 'myprojects', component: ProjectComponent},
             {path: 'project/:id', component: ProjectViewComponent},
             {path: 'newproject', component: ProjectCreateComponent},
+            {path: 'newissue', component: IssueCreateComponent},
             {path: 'settings', component: SettingsComponent},
             {path: 'mytime', component: TimeComponent},
         ],
