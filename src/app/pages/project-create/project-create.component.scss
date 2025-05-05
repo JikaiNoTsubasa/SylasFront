@@ -1,0 +1,15 @@
+@use '../../styles/variables' as *;
+
+.sy-prj-container{
+    width: 25%;
+    margin: auto;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.sy-prj-panel{
+    padding: 20px;
+    background-color: $fg-main;
+    color: $fg-menu;
+    margin-bottom: 20px;
+}

@@ -7,13 +7,13 @@
             </span>
         </td>
         <td style="text-align: right;">
-            <span class="sy-xp-level">Lv.{{level}} - {{xp}}%</span>
+            <span class="sy-xp-level">Lv.{{ currentLevel }} - {{ currentXP }}%</span>
         </td>
     </tr>
     <tr>
         <td colspan="2">
             <div class="sy-xp-bar">
-                <div class="sy-xp-bar-fill" [style.width.%]="xp"></div>
+                <div class="sy-xp-bar-fill" [style.width.%]="barWidth"></div>
             </div>
         </td>
     </tr>

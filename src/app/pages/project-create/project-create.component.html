@@ -1,12 +1,32 @@
 <div class="sy-page">
-    <h1>New Project</h1>
-    <form [formGroup]="formCreateProject" (ngSubmit) = "createProject()">
-        <input type="text" placeholder="Project Name" class="sy-input-text w100" formControlName="name">
-        <textarea class="sy-area w100 mb10" placeholder="Description" formControlName="description"></textarea>
-        Customer:
-        <select class="sy-input-text w100" formControlName="customer">
-            <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>
-        </select>
-        <button class="sy-button">Create Project</button>
-    </form>
+    <div *ngIf="respProject == null">
+        <h1>New Project</h1>
+        <form  [formGroup]="formCreateProject" (ngSubmit) = "createProject()">
+            Name:
+            <input type="text" placeholder="Project Name" class="sy-input-text w100" formControlName="name">
+            Description (markdown allowed):
+            <textarea class="sy-area w100 mb10" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+            Customer:
+            <dropdown formControlName="customer" [options]="customersOptions"></dropdown>
+            <!--
+            <select class="sy-input-text w100" formControlName="customer">
+                <option class="sy-option-text" *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>
+            </select>
+            -->
+            <button class="sy-button">Create Project</button>
+        </form>
+    </div>
+    <div *ngIf="respProject != null" class="sy-prj-container">
+        <div class="sy-prj-panel">
+            <h2>Project Created</h2>
+            <div>
+                Management XP gained: {{respProject.xpGained}}
+            </div>
+            <div>
+                <xp-gained [label]="'Management'" [icon]="'/images/icon-management-beige.svg'" [timer] = "2" [levelBefore]="respProject.levelBefore" [xpBefore]="respProject.xpPercentBefore" [levelAfter]="respProject.levelAfter" [xpAfter]="respProject.xpPercentAfter" [xpMax]="100"></xp-gained>
+            </div>
+        </div>
+        <a routerLink="/project/{{respProject.projectId}}" class="sy-button">View Project</a>
+        <a (click)="reset()" class="sy-button">Create New</a>
+    </div>
 </div>

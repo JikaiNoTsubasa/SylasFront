@@ -111,6 +111,17 @@ body{
     outline: none;
 }
 
+.sy-option-text{
+    background-color: $fg-menu;
+    color: $fg-main;
+    border: 0;
+}
+
+.sy-option-text:hover{
+    background-color: $fg-main;
+    color: $fg-menu;
+}
+
 .mb10{
     margin-bottom: 10px;
 }

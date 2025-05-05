@@ -85,6 +85,22 @@
 
         <tab icon="fa-solid fa-toolbox" title="Application">
             <h2>Application</h2>
+            <table>
+                <tr>
+                    <th>#ID</th>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr *ngFor="let param of globalParams">
+                    <td>#{{param.id}}</td>
+                    <td>{{param.name}}</td>
+                    <td><live-text [text]="param.value" (onTextChange)="onGlobalParamChange($event, param.id)"></live-text></td>
+                    <td>{{param.type}}</td>
+                    <td>{{param.description}}</td>
+                </tr>
+            </table>
         </tab>
 
     </tabs>

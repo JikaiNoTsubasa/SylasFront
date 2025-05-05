@@ -8,6 +8,7 @@ import { XpBarComponent } from '../../comps/xp-bar/xp-bar.component';
 import { LiveTextComponent } from "../../comps/live-text/live-text.component";
 import { NotificationService } from '../../Services/NotificationService';
 import { Preferences } from '../../Models/Database/Preferences';
+import { GlobalParameter } from '../../Models/Database/GlobalParameter';
 
 @Component({
     selector: 'app-settings',
@@ -24,10 +25,29 @@ export class SettingsComponent {
   meUser: User | null = null;
   mePreference: Preferences | null = null;
 
+  globalParams: GlobalParameter[] | null = null;
+
   ngOnInit(){
     this.syService.fetchMyUser().subscribe({
       next: (user) => {
         this.meUser = user;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {
+        this.refreshGlobalParameters();
+      }
+    });
+  }
+
+  refreshGlobalParameters(){
+    this.syService.fetchGlobalParameters().subscribe({
+      next: (params) => {
+        this.globalParams = params;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
       }
     });
   }
@@ -142,5 +162,20 @@ export class SettingsComponent {
   addTime(text: string){
     if (text == "") return;
     console.log(text);
+  }
+
+  onGlobalParamChange(text: string, i: number){
+    if (text == "") return;
+    this.syService.updateGlobalParameter(i, text).subscribe({
+      next: (params) => {
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {
+        this.refreshGlobalParameters();
+        this.notService.info("Changed parameter #"+i+": "+text);
+      }
+    });
   }
 }

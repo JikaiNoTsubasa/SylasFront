@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ResponseLogin } from "../Models/Requests/ResponseLogin";
+import { ResponseCreateProject } from "../Models/Requests/ResponseCreateProject";
 import { Observable } from "rxjs";
 import { User } from "../Models/Database/User";
 import { Project } from "../Models/Database/Project";
@@ -9,6 +10,7 @@ import { ResponseMyTimeInfo } from "../Models/Requests/ResponseMyTimeInfo";
 import { environment } from "../environment";
 import { Preferences } from "../Models/Database/Preferences";
 import { Customer } from "../Models/Database/Customer";
+import { GlobalParameter } from "../Models/Database/GlobalParameter";
 
 @Injectable({
     providedIn: 'root'
@@ -82,12 +84,12 @@ export class SyService {
         return this.http.get<Project>(`${this.getEnvUrl()}/api/project/${id}`);
     }
 
-    createProject(name: string, description: string, customerId: number): Observable<Project> {
+    createProject(name: string, description: string, customerId: number): Observable<ResponseCreateProject> {
         let data = new FormData();
         data.append('name', name);
         data.append('description', description);
         data.append('customerId', customerId.toString());
-        return this.http.post<Project>(`${this.getEnvUrl()}/api/project`, data);
+        return this.http.post<ResponseCreateProject>(`${this.getEnvUrl()}/api/project`, data);
     }
 //#endregion
 
@@ -115,6 +117,18 @@ export class SyService {
 
     getMyTimeInfo(): Observable<ResponseMyTimeInfo>{
         return this.http.get<ResponseMyTimeInfo>(`${this.getEnvUrl()}/api/time/me/info`)
+    }
+//#endregion
+
+//#region GlobalParameter
+    fetchGlobalParameters(): Observable<GlobalParameter[]> {
+        return this.http.get<GlobalParameter[]>(`${this.getEnvUrl()}/api/globalparameters`);
+    }
+
+    updateGlobalParameter(id: number, value: string): Observable<GlobalParameter> {
+        let data = new FormData();
+        data.append('value', value);
+        return this.http.patch<GlobalParameter>(`${this.getEnvUrl()}/api/globalparameter/${id}`, data);
     }
 //#endregion
 }

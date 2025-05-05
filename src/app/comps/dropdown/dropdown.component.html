@@ -1,0 +1,10 @@
+<div class="dropdown" (click)="toggleDropdown()">
+    <div class="selected">{{ selectedValue?.name || 'Select' }}</div>
+    <div class="arrow">&#9662;</div>
+  
+    <ul class="options" *ngIf="isOpen">
+      <li *ngFor="let option of options" (click)="selectOption(option); $event.stopPropagation()">
+        {{ option.name }}
+      </li>
+    </ul>
+</div>  

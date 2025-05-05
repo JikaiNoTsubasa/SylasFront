@@ -2,10 +2,7 @@
 
 .sy-main-menu{
     display: block;
-    position: absolute;
-    width: 25%;
-    left: 200px;
-    top: 100px;
+    width: 100%;
 }
 
 .sy-main-menu-item{
@@ -37,10 +34,8 @@
 }
 
 .sy-user-stats{
-    width: 300px;
-    position: absolute;
-    top: 100px;
-    right: 200px;
+    margin-top: 1.3em;
+    width: 100%;
 }
 
 .sy-user-cat{

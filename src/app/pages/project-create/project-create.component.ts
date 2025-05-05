@@ -4,12 +4,15 @@ import { Customer } from '../../Models/Database/Customer';
 import { NotificationService } from '../../Services/NotificationService';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { ResponseCreateProject } from '../../Models/Requests/ResponseCreateProject';
+import { XpGainedComponent } from "../../comps/xp-gained/xp-gained.component";
+import { DropdownComponent, DropdownOption } from '../../comps/dropdown/dropdown.component';
 
 @Component({
     selector: 'app-project-create',
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule],
+    imports: [ReactiveFormsModule, CommonModule, RouterModule, XpGainedComponent, DropdownComponent],
     templateUrl: './project-create.component.html',
     styleUrl: './project-create.component.scss'
 })
@@ -20,12 +23,15 @@ export class ProjectCreateComponent {
     router = inject(Router);
 
     customers: Customer[] = [];
+    customersOptions: DropdownOption[] = [];
 
     formCreateProject = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
         customer: new FormControl(''),
     });
+
+    respProject: ResponseCreateProject | null = null;
 
     ngOnInit() {
         this.refreshCustomers();
@@ -39,7 +45,11 @@ export class ProjectCreateComponent {
             error: (e) => {
                 this.notService.error(e.message);
             },
-            complete: () => {}
+            complete: () => {
+                this.customersOptions = this.customers.map((customer) => {
+                    return new DropdownOption(customer.id, customer.name);
+                });
+            }
         });
     }
 
@@ -47,12 +57,18 @@ export class ProjectCreateComponent {
         this.syService.createProject(this.formCreateProject.value.name ?? "Default", this.formCreateProject.value.description ?? "", parseInt(this.formCreateProject.value.customer ?? "0")).subscribe({
             next: (project) => {
                 this.notService.info("Project created");
-                this.router.navigate(['project', project.id]);
+                this.respProject = project;
             },
             error: (e) => {
                 this.notService.error(e.message);
             },
-            complete: () => {}
+            complete: () => {
+            }
         });
+    }
+
+    reset() {
+        this.respProject = null;
+        this.formCreateProject.reset();
     }
 }
