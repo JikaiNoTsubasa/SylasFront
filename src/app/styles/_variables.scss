@@ -1,9 +1,11 @@
+@use 'sass:color';
+
 $bg-menu: #2D364B;
 $fg-menu: #F9F1DF;
 $fg-menu-50: rgba($fg-menu, 0.2);
 
 $fg-main: #1D201D;
-$fg-main-darken: darken($fg-main, 10%);
+$fg-main-darken: color.scale($fg-main, $lightness: -20%);
 $fg-main-alpha: #1D201D00;
 $fg-main-50: rgba($fg-main, 0.2);
 $fg-primary: #8BFDDF;

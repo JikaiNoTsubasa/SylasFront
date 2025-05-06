@@ -7,7 +7,7 @@ import { User } from "../Models/Database/User";
 import { Project } from "../Models/Database/Project";
 import { DayTime } from "../Models/Database/DayTime";
 import { ResponseMyTimeInfo } from "../Models/Requests/ResponseMyTimeInfo";
-import { environment } from "../environment";
+import { environment } from "../../environments/environment";
 import { Preferences } from "../Models/Database/Preferences";
 import { Customer } from "../Models/Database/Customer";
 import { GlobalParameter } from "../Models/Database/GlobalParameter";
