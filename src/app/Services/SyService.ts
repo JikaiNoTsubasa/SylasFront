@@ -78,6 +78,14 @@ export class SyService {
         }
         return this.http.get<User[]>(`${this.getEnvUrl()}/api/users`, {params: params});
     }
+
+    createUser(name: string, email: string, password: string): Observable<User> {
+        let data = new FormData();
+        data.append('name', name);
+        data.append('email', email);
+        data.append('password', password);
+        return this.http.post<User>(`${this.getEnvUrl()}/api/user`, data);
+    }
 //#endregion
 
 //#region Preferences

@@ -10,11 +10,12 @@ import { NotificationService } from '../../Services/NotificationService';
 import { Preferences } from '../../Models/Database/Preferences';
 import { GlobalParameter } from '../../Models/Database/GlobalParameter';
 import { SidePanelComponent } from '../../comps/side-panel/side-panel.component';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-settings',
     standalone: true,
-    imports: [TabsComponent, TabComponent, CommonModule, XpBarComponent, LiveTextComponent, SidePanelComponent],
+    imports: [TabsComponent, TabComponent, CommonModule, XpBarComponent, LiveTextComponent, SidePanelComponent, ReactiveFormsModule],
     templateUrl: './settings.component.html',
     styleUrl: './settings.component.scss'
 })
@@ -32,6 +33,12 @@ export class SettingsComponent {
   userLimit: number = 10;
   users: User[] | null = null;
   createUserOpen: boolean = false;
+
+  formCreateUser = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
 
   ngOnInit(){
     this.syService.fetchMyUser().subscribe({
@@ -73,6 +80,18 @@ export class SettingsComponent {
 
   openCreateUserModal(){
     this.createUserOpen = true;
+  }
+
+  onSubmitCreateUser(){
+    this.syService.createUser(this.formCreateUser.value.name ?? "Default", this.formCreateUser.value.email ?? "Default", this.formCreateUser.value.password ?? "Default").subscribe({
+      next: () => {
+        this.createUserOpen = false;
+        this.refreshUsers();
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      }
+    });
   }
 
   onMailChange(text: string){

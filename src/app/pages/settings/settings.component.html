@@ -144,14 +144,14 @@
   (closed)="createUserOpen = false"
   title="New User"
 >
-    <form>
+    <form [formGroup]="formCreateUser" (ngSubmit)="onSubmitCreateUser()">
         <table class="w100">
             <tr>
                 <td>
                     Name:
                 </td>
                 <td>
-                    <input type="text" placeholder="User Name" class="w100">
+                    <input type="text" placeholder="User Name" class="w100" formControlName="name">
                 </td>
             </tr>
             <tr>
@@ -159,7 +159,7 @@
                     Email:
                 </td>
                 <td>
-                    <input type="text" placeholder="Email" class="w100">
+                    <input type="text" placeholder="Email" class="w100" formControlName="email">
                 </td>
             </tr>
             <tr>
@@ -167,7 +167,7 @@
                     Password:
                 </td>
                 <td>
-                    <input type="password" placeholder="Password" class="w100">
+                    <input type="password" placeholder="Password" class="w100" formControlName="password">
                 </td>
             </tr>
         </table>
