@@ -103,6 +103,74 @@
             </table>
         </tab>
 
+        <tab icon="fa-solid fa-users" title="Users">
+            <h2>Users</h2>
+            <div>
+                <button class="sy-button" (click)="openCreateUserModal()">Create</button>
+            </div>
+            <table class="sy-table">
+                <tr>
+                    <th>#ID</th>
+                    <th>Name</th>
+                    <th>Can Login</th>
+                    <th>Last Login</th>
+                    <th>Level Front</th>
+                    <th>Level Back</th>
+                    <th>Level Test</th>
+                    <th>Level Mgnt</th>
+                </tr>
+                <tr *ngFor="let user of users">
+                    <td>#{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>
+                        <i *ngIf="user.canLogin" class="fa-solid fa-check"></i>
+                        <i *ngIf="!user.canLogin" class="fa-solid fa-ban"></i>
+                    </td>
+                    <td>{{user.lastConnection | date: 'HH:mm dd/MM/yyyy'}}</td>
+                    <td>{{user.levelFrontEnd}}</td>
+                    <td>{{user.levelBackEnd}}</td>
+                    <td>{{user.levelTests}}</td>
+                    <td>{{user.levelManagement}}</td>
+                </tr>
+            </table>
+        </tab>
+
     </tabs>
 
 </div>
+
+<side-panel
+  [isOpen]="createUserOpen"
+  (closed)="createUserOpen = false"
+  title="New User"
+>
+    <form>
+        <table class="w100">
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type="text" placeholder="User Name" class="w100">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <input type="text" placeholder="Email" class="w100">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input type="password" placeholder="Password" class="w100">
+                </td>
+            </tr>
+        </table>
+      <button class="sy-button">Create User</button>
+    </form>
+</side-panel>

@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ResponseLogin } from "../Models/Requests/ResponseLogin";
 import { ResponseCreateProject } from "../Models/Requests/ResponseCreateProject";
@@ -66,6 +66,17 @@ export class SyService {
             data.append('avatar', avatar ?? "");
         }
         return this.http.patch<User>(`${this.getEnvUrl()}/api/user/me`, data);
+    }
+
+    fetchUsers(page?: number, limit?: number): Observable<User[]> {
+        let params = new HttpParams();
+        if (page){
+            params = params.append('page', page.toString());
+        }
+        if (limit){
+            params = params.append('limit', limit.toString());
+        }
+        return this.http.get<User[]>(`${this.getEnvUrl()}/api/users`, {params: params});
     }
 //#endregion
 

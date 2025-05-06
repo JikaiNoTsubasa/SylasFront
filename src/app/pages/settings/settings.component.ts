@@ -9,11 +9,12 @@ import { LiveTextComponent } from "../../comps/live-text/live-text.component";
 import { NotificationService } from '../../Services/NotificationService';
 import { Preferences } from '../../Models/Database/Preferences';
 import { GlobalParameter } from '../../Models/Database/GlobalParameter';
+import { SidePanelComponent } from '../../comps/side-panel/side-panel.component';
 
 @Component({
     selector: 'app-settings',
     standalone: true,
-    imports: [TabsComponent, TabComponent, CommonModule, XpBarComponent, LiveTextComponent],
+    imports: [TabsComponent, TabComponent, CommonModule, XpBarComponent, LiveTextComponent, SidePanelComponent],
     templateUrl: './settings.component.html',
     styleUrl: './settings.component.scss'
 })
@@ -27,6 +28,11 @@ export class SettingsComponent {
 
   globalParams: GlobalParameter[] | null = null;
 
+  userPage: number = 1;
+  userLimit: number = 10;
+  users: User[] | null = null;
+  createUserOpen: boolean = false;
+
   ngOnInit(){
     this.syService.fetchMyUser().subscribe({
       next: (user) => {
@@ -39,6 +45,8 @@ export class SettingsComponent {
         this.refreshGlobalParameters();
       }
     });
+
+    this.refreshUsers();
   }
 
   refreshGlobalParameters(){
@@ -50,6 +58,21 @@ export class SettingsComponent {
         this.notService.error(e.message);
       }
     });
+  }
+
+  refreshUsers(){
+    this.syService.fetchUsers(this.userPage, this.userLimit).subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      }
+    });
+  }
+
+  openCreateUserModal(){
+    this.createUserOpen = true;
   }
 
   onMailChange(text: string){

@@ -22,4 +22,6 @@ export interface User{
     xpPercentTests: number;
     xpPercentManagement: number;
     preferences: Preferences | null;
+    lastConnection: Date;
+    canLogin: boolean;
 }
