@@ -62,7 +62,7 @@ export class SettingsComponent {
         this.globalParams = params;
       },
       error: (e) => {
-        this.notService.error(e.message);
+        // this.notService.error(e.message);
       }
     });
   }
@@ -73,7 +73,7 @@ export class SettingsComponent {
         this.users = users;
       },
       error: (e) => {
-        this.notService.error(e.message);
+        // this.notService.error(e.message);
       }
     });
   }
