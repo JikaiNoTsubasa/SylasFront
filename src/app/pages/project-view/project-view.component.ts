@@ -2,12 +2,11 @@ import { Component, inject, TemplateRef } from '@angular/core';
 import { SyService } from '../../Services/SyService';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Project } from '../../Models/Database/Project';
+import { DevelopmentTime, Priority, Project } from '../../Models/Database/Project';
 import { NotificationService } from '../../Services/NotificationService';
 import { MkFieldComponent } from "../../comps/mk-field/mk-field.component";
-import { SidePanelComponent } from '../../comps/side-panel/side-panel.component';
 import { PopupService } from '../../Services/PopupService';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-project-view',
@@ -28,9 +27,20 @@ export class ProjectViewComponent {
 
   loading: boolean = false;
 
+  priorities = Object.values(Priority).filter(v => typeof v != 'number');
+  devTimes = Object.values(DevelopmentTime).filter(v => typeof v != 'number');
+  complexities = Array.from({ length: 10 }, (_, i) => i + 1);
+
+
   // Form new issue
   issueForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    description: new FormControl(''),
+    priority: new FormControl(this.priorities[1], Validators.required),
+    devTime: new FormControl(this.devTimes[1], Validators.required),
+    complexity: new FormControl(this.complexities[0], Validators.required),
+    gitlab: new FormControl(''),
+    duedate: new FormControl(''),
   });
 
   ngOnInit(){

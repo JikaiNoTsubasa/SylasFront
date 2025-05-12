@@ -106,7 +106,7 @@
         <tab icon="fa-solid fa-users" title="Users">
             <h2>Users</h2>
             <div>
-                <button class="sy-button" (click)="openCreateUserModal()">Create</button>
+                <button class="sy-button" (click)="openCreateUserModal(createUserTemplate, { title: 'Create User' })">Create</button>
             </div>
             <table class="sy-table">
                 <tr>
@@ -139,19 +139,19 @@
 
 </div>
 
-<side-panel
-  [isOpen]="createUserOpen"
-  (closed)="createUserOpen = false"
-  title="New User"
+
+
+<ng-template #createUserTemplate
 >
     <form [formGroup]="formCreateUser" (ngSubmit)="onSubmitCreateUser()">
+        <h2>Create User</h2>
         <table class="w100">
             <tr>
                 <td>
                     Name:
                 </td>
                 <td>
-                    <input type="text" placeholder="User Name" class="w100" formControlName="name">
+                    <input class="sy-input-inverse w100" type="text" placeholder="User Name" formControlName="name">
                 </td>
             </tr>
             <tr>
@@ -159,7 +159,7 @@
                     Email:
                 </td>
                 <td>
-                    <input type="text" placeholder="Email" class="w100" formControlName="email">
+                    <input class="sy-input-inverse w100" type="text" placeholder="Email" formControlName="email">
                 </td>
             </tr>
             <tr>
@@ -167,10 +167,10 @@
                     Password:
                 </td>
                 <td>
-                    <input type="password" placeholder="Password" class="w100" formControlName="password">
+                    <input class="sy-input-inverse w100" type="password" placeholder="Password" formControlName="password">
                 </td>
             </tr>
         </table>
-      <button class="sy-button">Create User</button>
+      <button class="sy-button-inverse">Create User</button>
     </form>
-</side-panel>
+</ng-template>

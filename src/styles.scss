@@ -67,6 +67,23 @@ body{
     color: $fg-main;
 }
 
+.sy-button-inverse{
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid $fg-menu;
+    background-color: $fg-menu;
+    color: $fg-main;
+    cursor: pointer;
+}
+
+.sy-button-inverse:hover{
+    background-color: $fg-main;
+    color: $fg-menu;
+}
+
 .sy-link{
     color: $fg-main;
     font-weight: bold;
@@ -111,6 +128,23 @@ body{
     outline: none;
 }
 
+.sy-input-inverse{
+    display: block;
+    background: none;
+    color: $fg-menu;
+    border: 0;
+    border-bottom: 1px solid $fg-menu;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', sans-serif;
+    margin-bottom: 10px;
+}
+
+.sy-input-inverse:focus{
+    border-bottom: 1px dashed $fg-menu;
+    outline: none;
+}
+
 .sy-option-text{
     background-color: $fg-menu;
     color: $fg-main;
@@ -139,6 +173,21 @@ body{
 
 .sy-area:focus{
     border: 0;
+    outline: none;
+}
+
+.sy-area-inverse{
+    display: block;
+    background: none;
+    color: $fg-menu;
+    border: 1px solid $fg-menu;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+.sy-area-inverse:focus{
+    border: 1px dashed $fg-menu;
     outline: none;
 }
 
@@ -180,4 +229,23 @@ body{
 .sy-table th{
     text-align: left;
     border-bottom: 1px solid $fg-main;
+}
+
+.sy-small{
+    font-size: 12px;
+}
+
+.sy-col-content-size{
+    width: 1px;
+    white-space: nowrap;
+}
+
+.sy-row-form{
+    padding: 20px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.vtop{
+    vertical-align: top;
 }

@@ -39,7 +39,64 @@
 <ng-template #newIssueTemplate>
     <h2>New Issue</h2>
     <form [formGroup]="issueForm" (ngSubmit)="onAddIssue()">
-        <input class="sy-input-text w100" style="margin-bottom: 10px;" type="text" formControlName="name">
-        <button class="sy-button" [disabled]="!issueForm.valid">Add Issue</button>
+        <div class="sy-row-form w100">
+            Name*:<br>
+            <input class="sy-input-inverse w100" type="text" placeholder="Issue Name" formControlName="name">
+        </div>
+        <div class="sy-row-form w100">
+            <table class="w100">
+                <tr>
+                    <td>
+                        Priority*:<br>
+                        <select class="sy-input-inverse w100" formControlName="priority">
+                            <option class="sy-option-text" *ngFor="let priority of priorities" [value]="priority">{{priority}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        Dev Time*:<br>
+                        <select class="sy-input-inverse w100" formControlName="devTime">
+                            <option class="sy-option-text" *ngFor="let devTime of devTimes" [value]="devTime">{{devTime}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        Complexity*:<br>
+                        <select class="sy-input-inverse w100" formControlName="complexity">
+                            <option class="sy-option-text" *ngFor="let complexity of complexities" [value]="complexity">{{complexity}}</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="sy-row-form w100">
+            Description:(<span class="sy-small">Markdown supported</span>)<br>
+            <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+        </div>
+
+        <div class="sy-row-form w100">
+            GitLab Link:<br>
+            <input class="sy-input-inverse w100" type="text" placeholder="GitLab ticket link" formControlName="gitlab">
+        </div>
+
+        <div class="sy-row-form w100">
+            <table class="w100">
+                <tr>
+                    <td class="vtop">
+                        Due Date:<br>
+                        <input class="sy-input-inverse w100" type="date" formControlName="duedate">
+                    </td>
+                    <td class="vtop">
+                        Labels:<br>
+                    </td>
+                    <td class="vtop">
+                        Milestone:<br>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="sy-row-form w100">
+            <button class="sy-button-inverse" [disabled]="!issueForm.valid">Add Issue</button>
+        </div>
     </form>
 </ng-template>

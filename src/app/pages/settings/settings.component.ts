@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, TemplateRef } from '@angular/core';
 import { SyService } from '../../Services/SyService';
 import { TabsComponent } from "../../comps/tabs/tabs.component";
 import { TabComponent } from "../../comps/tab/tab.component";
@@ -11,11 +11,12 @@ import { Preferences } from '../../Models/Database/Preferences';
 import { GlobalParameter } from '../../Models/Database/GlobalParameter';
 import { SidePanelComponent } from '../../comps/side-panel/side-panel.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { PopupService } from '../../Services/PopupService';
 
 @Component({
     selector: 'app-settings',
     standalone: true,
-    imports: [TabsComponent, TabComponent, CommonModule, XpBarComponent, LiveTextComponent, SidePanelComponent, ReactiveFormsModule],
+    imports: [TabsComponent, TabComponent, CommonModule, XpBarComponent, LiveTextComponent, ReactiveFormsModule],
     templateUrl: './settings.component.html',
     styleUrl: './settings.component.scss'
 })
@@ -23,6 +24,7 @@ export class SettingsComponent {
 
   syService = inject(SyService);
   notService = inject(NotificationService);
+  popupService = inject(PopupService);
 
   meUser: User | null = null;
   mePreference: Preferences | null = null;
@@ -32,7 +34,6 @@ export class SettingsComponent {
   userPage: number = 1;
   userLimit: number = 10;
   users: User[] | null = null;
-  createUserOpen: boolean = false;
 
   formCreateUser = new FormGroup({
     name: new FormControl(''),
@@ -78,14 +79,14 @@ export class SettingsComponent {
     });
   }
 
-  openCreateUserModal(){
-    this.createUserOpen = true;
+  openCreateUserModal(template: TemplateRef<any>, context: any = {}){
+    this.popupService.open(template, context);
   }
 
   onSubmitCreateUser(){
     this.syService.createUser(this.formCreateUser.value.name ?? "Default", this.formCreateUser.value.email ?? "Default", this.formCreateUser.value.password ?? "Default").subscribe({
       next: () => {
-        this.createUserOpen = false;
+        this.popupService.close();
         this.refreshUsers();
       },
       error: (e) => {
