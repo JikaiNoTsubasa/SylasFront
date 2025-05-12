@@ -96,6 +96,18 @@ body{
     color: $fg-primary;
 }
 
+.sy-link-inverse{
+    color: $fg-menu;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.sy-link-inverse:hover{
+    color: $fg-primary;
+}
+
 .note{
     padding: 1rem;
     background-color: $fg-main-50;

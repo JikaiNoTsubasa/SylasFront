@@ -1,0 +1,56 @@
+@use '../../styles/variables' as *;
+
+.sy-issue-item{
+    text-decoration: none;
+    background-color: $fg-main;
+    color: $fg-menu;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.sy-issue-title{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sy-tag{
+    background-color: $fg-menu;
+    color: $fg-main;
+    padding: 0px 5px;
+}
+
+.sy-issue-info{
+    font-size: 12px;
+}
+
+.sy-customer-item{
+    text-decoration: none;
+    background-color: $fg-main;
+    color: $fg-menu;
+    padding: 10px;
+}
+
+.sy-issue-toolbar-item{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.sy-quest-item{
+    text-decoration: none;
+    background-color: $fg-main;
+    color: $fg-menu;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.sy-quest-xp-big{
+    font-size: 40px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.sy-box{
+    background-color: $fg-main;
+    color: $fg-menu;
+    padding: 10px;
+    margin-bottom: 10px;
+}

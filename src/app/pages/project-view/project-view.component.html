@@ -8,7 +8,7 @@
                     <button (click)="deleteProject()" class="sy-button">Delete</button>
                 </div>
                 <div style="height: 400px;">
-                    <mk-field [content]="project.description"></mk-field>
+                    <mk-field [content]="project.description" (onSave)="updateProjectDescription($event)"></mk-field>
 
                 </div>
 
@@ -17,18 +17,123 @@
 
         <div class="col-6">
             <div class="pad10">
-                <h1>Customer</h1>
-                {{project.customer?.name}}
-                <h1>Issues</h1>
-                <button class="sy-button" (click)="openNewIssue(newIssueTemplate, {title: 'New Issue'})">Create New</button>
-                <div style="margin-top: 20px;">
-                    <div *ngIf="!project.issues || project.issues.length == 0">No issues</div>
-                    <div *ngIf="project.issues && project.issues.length > 0">
-                        <a routerLink="/issue/{{issue.id}}" class="sy-project-slot" *ngFor="let issue of project.issues">
-                            {{issue.name}}
-                        </a>
+                <div *ngIf="!selectedIssue">
+                    <h1>Customer</h1>
+                    <div class="sy-customer-item">
+                        {{project.customer?.name}}
                     </div>
+                    <h1>Issues</h1>
+                    <button class="sy-button" (click)="openNewIssue(newIssueTemplate, {title: 'New Issue'})">New Issue</button>
+                    <div style="margin-top: 20px;">
+                        <div *ngIf="!project.issues || project.issues.length == 0">No issues</div>
+                        <div *ngIf="project.issues && project.issues.length > 0">
+                            <div class="sy-issue-item" *ngFor="let issue of project.issues">
+                                <span class="sy-issue-title sy-link-inverse" (click)="selectIssue(issue.id)"><i class="fa-solid fa-file-lines"></i> {{issue.name}}</span>
+                                <div class="sy-issue-info">
+                                    Priority: <span class="sy-tag" style="display: inline-block;width:100px;">{{issue.priority}}</span>
+                                    DevTime: <span class="sy-tag" style="display: inline-block;width:100px;">{{issue.developmentTime}}</span>
+                                    Complexity: <span class="sy-tag">{{issue.complexity}}</span>
+                                    
+                                </div>
 
+                                <div>
+                                    <!--
+                                    <span class="sy-issue-toolbar-item">
+                                        <a (click)="selectedIssue = issue" class="sy-link-inverse"><i class="fa-solid fa-eye"></i></a>
+
+                                    </span>
+                                    -->
+                                    <span class="sy-issue-toolbar-item">
+                                        <span><i class="fa-solid fa-book" title="Number of quests: {{issue.quests?.length ?? 0}}"></i> {{issue.quests?.length ?? 0}}</span>
+                                    </span>
+
+                                    <span class="sy-issue-toolbar-item">
+                                        <span *ngIf="issue.completionPercent != null">
+                                            <i class="fa-solid fa-list-check" title="Completion {{issue.completionPercent}}%"></i>
+                                            {{issue.completionPercent}}%
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+                <div *ngIf="selectedIssue">
+                    <h1><i class="fa-solid fa-file-lines"></i> {{selectedIssue.name}}</h1>
+                    <div class="mb10">
+                        <button class="sy-button" (click)="selectedIssue = null">Back</button>
+                        <button class="sy-button" (click)="openNewQuest(newQuestTemplate, {title: 'New Quest'})">New Quest</button>
+
+                    </div>
+                    <div class="w100 sy-box">
+                        <table>
+                            <tr>
+                                <td>
+                                    Priority:
+                                </td>
+                                <td>
+                                    {{selectedIssue.priority}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    DevTime:
+                                </td>
+                                <td>
+                                    {{selectedIssue.developmentTime}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Complexity:
+                                </td>
+                                <td>
+                                    {{selectedIssue.complexity}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="w100" style="height: 300px;">
+                        <mk-field [content]="selectedIssue.description"></mk-field>
+                    </div>
+                    <div class="w100" *ngIf="selectedIssue.quests && selectedIssue.quests.length > 0">
+                        <h2>Quests</h2>
+                        <div class="sy-quest-item w100" *ngFor="let quest of selectedIssue.quests">
+                            <a routerLink="/quest/{{quest.id}}" class="sy-link-inverse"><i class="fa-solid fa-book"></i> {{quest.name}}</a>
+                            <br>
+                            <markdown [data]="quest.description"></markdown>
+                            <table class="w100 centered">
+                                <tr>
+                                    <td>
+                                        <div style="width: 100px; margin:auto;">
+                                            <span class="sy-quest-xp-big">{{quest.xpFrontEnd}}</span>
+                                            <img src="/images/icon-frontend-beige.svg" width="20px" height="20px">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="width: 100px; margin:auto;">
+                                            <span class="sy-quest-xp-big">{{quest.xpBackEnd}}</span>
+                                            <img src="/images/icon-backend-beige.svg" width="20px" height="20px">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="width: 100px; margin:auto;">
+                                            <span class="sy-quest-xp-big">{{quest.xpTest}}</span>
+                                            <img src="/images/icon-tests-beige.svg" width="20px" height="20px">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="width: 100px; margin:auto;">
+                                            <span class="sy-quest-xp-big">{{quest.xpManagement}}</span>
+                                            <img src="/images/icon-management-beige.svg" width="20px" height="20px">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
@@ -96,7 +201,26 @@
         </div>
 
         <div class="sy-row-form w100">
-            <button class="sy-button-inverse" [disabled]="!issueForm.valid">Add Issue</button>
+            <button class="sy-button-inverse">Add Issue</button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #newQuestTemplate>
+    <h2>New Quest</h2>
+    <form [formGroup]="questForm" (ngSubmit)="onAddQuest()">
+        <div class="sy-row-form w100">
+            Name*:<br>
+            <input class="sy-input-inverse w100" type="text" placeholder="Quest Name" formControlName="name">
+        </div>
+
+        <div class="sy-row-form w100">
+            Description:(<span class="sy-small">Markdown supported</span>)<br>
+            <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+        </div>
+
+        <div class="sy-row-form w100">
+            <button class="sy-button-inverse">Add Quest</button>
         </div>
     </form>
 </ng-template>

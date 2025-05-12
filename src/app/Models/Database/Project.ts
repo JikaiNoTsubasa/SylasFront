@@ -12,9 +12,9 @@ export enum IssueStatus {
 }
 
 export enum DevelopmentTime{
-    SHORT,
-    MEDIUM,
-    LONG
+    SHORT = 'SHORT',
+    MEDIUM = 'MEDIUM',
+    LONG = 'LONG'
 }
 
 export enum Priority{
@@ -51,7 +51,9 @@ export interface Issue{
     priority: Priority;
     status: IssueStatus;
     dueDate: Date;
+    quests: Quest[] | null;
     activities: IssueActivity[] | null;
+    completionPercent: number | null;
     createdDate: Date;
     updatedDate: Date;
     deletedDate: Date;
@@ -79,4 +81,14 @@ export interface Milestone{
 export interface IssueActivity{
     id: number;
     name: string;
+}
+
+export interface Quest{
+    id: number;
+    name: string;
+    description: string;
+    xpFrontEnd: number;
+    xpBackEnd: number;
+    xpTest: number;
+    xpManagement: number;
 }

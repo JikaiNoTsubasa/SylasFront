@@ -4,13 +4,14 @@ import { ResponseLogin } from "../Models/Requests/ResponseLogin";
 import { ResponseCreateProject } from "../Models/Requests/ResponseCreateProject";
 import { Observable } from "rxjs";
 import { User } from "../Models/Database/User";
-import { Project } from "../Models/Database/Project";
+import { DevelopmentTime, Issue, Priority, Project } from "../Models/Database/Project";
 import { DayTime } from "../Models/Database/DayTime";
 import { ResponseMyTimeInfo } from "../Models/Requests/ResponseMyTimeInfo";
 import { environment } from "../../environments/environment";
 import { Preferences } from "../Models/Database/Preferences";
 import { Customer } from "../Models/Database/Customer";
 import { GlobalParameter } from "../Models/Database/GlobalParameter";
+import { RequestUpdateProject } from "../Models/Requests/RequestUpdateProject";
 
 @Injectable({
     providedIn: 'root'
@@ -113,6 +114,55 @@ export class SyService {
 
     deleteProject(id: number): Observable<Project> {
         return this.http.delete<Project>(`${this.getEnvUrl()}/api/project/${id}`);
+    }
+
+    updateProject(id: number, req: RequestUpdateProject): Observable<Project>{
+        let data = new FormData();
+        if (req.name){
+            data.append('name', req.name);
+        }
+        if (req.description){
+            data.append('description', req.description);
+        }
+        return this.http.patch<Project>(`${this.getEnvUrl()}/api/project/${id}`, data);
+    }
+
+    createIssue(projectId: number, name: string, devTime: DevelopmentTime, complexity: number, priority: Priority, description?: string, gitlabTicket?: string, dueDate?: string, milestoneId?: number, labels?: number[]): Observable<Issue> {
+        let data = new FormData();
+        data.append('name', name);
+        data.append('projectId', projectId.toString());
+        data.append('developmentTime', devTime.toString());
+        data.append('complexity', complexity.toString());
+        data.append('priority', priority.toString());
+        if (description){
+            data.append('description', description);
+        }
+        if (gitlabTicket){
+            data.append('gitlabTicket', gitlabTicket);
+        }
+        if (dueDate){
+            data.append('dueDate', dueDate);
+        }
+        if (milestoneId){
+            data.append('milestoneId', milestoneId.toString());
+        }
+        if (labels){
+            data.append('labels', JSON.stringify(labels));
+        }
+        return this.http.post<Issue>(`${this.getEnvUrl()}/api/issue`, data);
+    }
+
+    fetchIssue(issueId: number): Observable<Issue> {
+        return this.http.get<Issue>(`${this.getEnvUrl()}/api/issue/${issueId}`);
+    }
+
+    createQuest(name: string, description: string, issueId: number, assigneeId: number): Observable<Issue> {
+        let data = new FormData();
+        data.append('name', name);
+        data.append('description', description);
+        data.append('issueId', issueId.toString());
+        data.append('assigneeId', assigneeId.toString());
+        return this.http.post<Issue>(`${this.getEnvUrl()}/api/quest`, data);
     }
 //#endregion
 
