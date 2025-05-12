@@ -1,1 +1,9 @@
 <router-outlet></router-outlet>
+<side-panel
+    [content]="contentTemplate"
+    [isOpen]="isOpen"
+    [context]="context"
+    (closed)="popupService.close()"
+    >
+
+</side-panel>

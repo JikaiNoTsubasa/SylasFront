@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthService } from './Services/AuthService';
-import { UserService } from './Services/UserService';
-import { NotificationService } from './Services/NotificationService';
 import { trigger, transition, query, style, animate } from '@angular/animations';
+import { SidePanelComponent } from "./comps/side-panel/side-panel.component";
+import { PopupService } from './Services/PopupService';
 
 export const routeAnimations = trigger('routeAnimations', [
   // Fade
@@ -49,13 +48,25 @@ export const routeAnimations = trigger('routeAnimations', [
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet],
+    imports: [RouterOutlet, SidePanelComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
     animations: [routeAnimations]
 })
 export class AppComponent {
-  title = 'SylasFront';
+  title = 'Sylas';
+
+  isOpen = false;
+  contentTemplate?: any;
+  context: any = {};
+
+  constructor(public popupService: PopupService) {
+    this.popupService.popupState$.subscribe(state => {
+      this.isOpen = state.isOpen;
+      this.contentTemplate = state.content;
+      this.context = state.context ?? {};
+    });
+  }
 
   ngOnInit() {
   }

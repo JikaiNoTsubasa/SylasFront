@@ -5,6 +5,10 @@
     <button class="close-btn" (click)="close()">✕</button>
   </div>
   <div class="content">
-    <ng-content></ng-content>
+    <ng-container 
+      *ngIf="content"
+      [ngTemplateOutlet]="content"
+      [ngTemplateOutletContext]="context"
+    ></ng-container>
   </div>
 </div>

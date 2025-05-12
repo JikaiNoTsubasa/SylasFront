@@ -23,5 +23,5 @@ export function provideBearerInterceptor(req: HttpRequest<any>, next: HttpHandle
           }
           return throwError(() => err);
         })
-      );;
+      );
 }

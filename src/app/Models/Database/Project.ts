@@ -1,6 +1,28 @@
 import { Customer } from "./Customer";
 import { User } from "./User";
 
+export enum IssueStatus {
+    NEW,
+    ASSIGNED,
+    IN_PROGRESS,
+    ON_HOLD,
+    RESOLVED,
+    CLOSED,
+    CANCELLED
+}
+
+export enum DevelopmentTime{
+    SHORT,
+    MEDIUM,
+    LONG
+}
+
+export enum Priority{
+    LOW,
+    MEDIUM,
+    HIGH
+}
+
 export interface Project{
     id:number;
     owner: User;
@@ -21,14 +43,15 @@ export interface Issue{
     name: string;
     description: string;
     gitlabTicket: string;
-    complexity: string;
-    developmentTime: string;
+    complexity: number; // 1-10
+    developmentTime: DevelopmentTime;
     isDeleted: boolean;
     labels: Label[] | null;
     milestone: Milestone | null;
-    priority: string;
-    status: string;
+    priority: Priority;
+    status: IssueStatus;
     dueDate: Date;
+    activities: IssueActivity[] | null;
     createdDate: Date;
     updatedDate: Date;
     deletedDate: Date;
@@ -49,6 +72,11 @@ export interface Label{
 }
 
 export interface Milestone{
+    id: number;
+    name: string;
+}
+
+export interface IssueActivity{
     id: number;
     name: string;
 }

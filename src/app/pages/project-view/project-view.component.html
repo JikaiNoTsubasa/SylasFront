@@ -1,7 +1,7 @@
 <div class="sy-page">
     <span *ngIf="loading">Loading...</span>
     <div *ngIf="project" class="grid">
-        <div class="col-8">
+        <div class="col-6">
             <div class="pad10">
                 <h1>{{project.name}}</h1>
                 <div>
@@ -15,12 +15,12 @@
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
             <div class="pad10">
                 <h1>Customer</h1>
                 {{project.customer?.name}}
                 <h1>Issues</h1>
-                <button routerLink="/newissue" class="sy-button">Create New</button>
+                <button class="sy-button" (click)="openNewIssue(newIssueTemplate, {title: 'New Issue'})">Create New</button>
                 <div style="margin-top: 20px;">
                     <div *ngIf="!project.issues || project.issues.length == 0">No issues</div>
                     <div *ngIf="project.issues && project.issues.length > 0">
@@ -36,30 +36,10 @@
     </div>
 </div>
 
-<side-panel
-  [isOpen]="panelOpen"
-  (closed)="panelOpen = false"
-  title="New Issue"
->
-    <form>
-        <table>
-            <tr>
-                <td>
-                    Name:
-                </td>
-                <td>
-                    <input type="text" placeholder="Issue Name" class="w100">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Description:
-                </td>
-                <td>
-                    <textarea class="sy-area w100 mb10" style="height: 400px; resize: none;" placeholder="Description"></textarea>
-                </td>
-            </tr>
-        </table>
-      <button class="sy-button">Create Issue</button>
+<ng-template #newIssueTemplate>
+    <h2>New Issue</h2>
+    <form [formGroup]="issueForm" (ngSubmit)="onAddIssue()">
+        <input class="sy-input-text w100" style="margin-bottom: 10px;" type="text" formControlName="name">
+        <button class="sy-button" [disabled]="!issueForm.valid">Add Issue</button>
     </form>
-</side-panel>
+</ng-template>
