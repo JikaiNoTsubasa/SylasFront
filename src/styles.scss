@@ -123,6 +123,10 @@ body{
     height: 100%;
 }
 
+.bg-beige{
+    background-color: rgba($fg-main, 0.1);
+}
+
 .sy-input-text{
     display: block;
     background: $fg-main-50;

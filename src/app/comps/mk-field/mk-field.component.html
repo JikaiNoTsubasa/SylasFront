@@ -1,5 +1,5 @@
-<div class="w100 h100">
-    <div *ngIf="!editMode" (dblclick)="toggleEdit()" class="w100 h100 scrollable">
+<div class="w100 h100 bg-beige">
+    <div *ngIf="!editMode" (dblclick)="toggleEdit()" class="w100 h100 pad10 scrollable">
         <markdown [data]="content"></markdown>
     </div>
     <div *ngIf="editMode" class="w100 h100">

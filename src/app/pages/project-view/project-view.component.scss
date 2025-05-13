@@ -11,6 +11,7 @@
 .sy-issue-title{
     display: block;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 .sy-tag{
@@ -28,6 +29,7 @@
     background-color: $fg-main;
     color: $fg-menu;
     padding: 10px;
+    box-sizing: border-box;
 }
 
 .sy-issue-toolbar-item{
@@ -41,6 +43,7 @@
     color: $fg-menu;
     padding: 10px;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 .sy-quest-xp-big{
@@ -53,4 +56,5 @@
     color: $fg-menu;
     padding: 10px;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }

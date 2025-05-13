@@ -4,7 +4,7 @@
         <div class="col-6">
             <div class="pad10">
                 <h1>{{project.name}}</h1>
-                <div>
+                <div class="mb10">
                     <button (click)="deleteProject()" class="sy-button">Delete</button>
                 </div>
                 <div style="height: 400px;">
@@ -94,7 +94,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="w100" style="height: 300px;">
+                    <div class="w100" style="height: 294px;">
                         <mk-field [content]="selectedIssue.description"></mk-field>
                     </div>
                     <div class="w100" *ngIf="selectedIssue.quests && selectedIssue.quests.length > 0">
