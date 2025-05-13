@@ -127,6 +127,10 @@ body{
     background-color: rgba($fg-main, 0.1);
 }
 
+.bbox{
+    box-sizing: border-box;
+}
+
 .sy-input-text{
     display: block;
     background: $fg-main-50;
