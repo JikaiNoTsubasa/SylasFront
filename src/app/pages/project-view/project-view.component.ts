@@ -9,6 +9,7 @@ import { PopupService } from '../../Services/PopupService';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RequestUpdateProject } from '../../Models/Requests/RequestUpdateProject';
 import { MarkdownModule } from 'ngx-markdown';
+import { UserService } from '../../Services/UserService';
 
 @Component({
   selector: 'app-project-view',
@@ -24,10 +25,12 @@ export class ProjectViewComponent {
   notService = inject(NotificationService);
   router = inject(Router);
   popup = inject(PopupService);
+  userService = inject(UserService);
 
   project: Project | null = null;
 
   loading: boolean = false;
+  canCreateQuest: boolean = false;
 
   priorities = Object.values(Priority).filter(v => typeof v != 'number');
   devTimes = Object.values(DevelopmentTime).filter(v => typeof v != 'number');
@@ -69,7 +72,7 @@ export class ProjectViewComponent {
       },
       complete: () => {
         this.loading = false;
-        console.log(this.project);
+        this.calculateCanCreateQuest();
       }
     });
   }
@@ -189,5 +192,10 @@ export class ProjectViewComponent {
       },
       complete: () => {}
     })
+  }
+
+  calculateCanCreateQuest(){
+    this.canCreateQuest = this.project?.owner.id == this.userService.userId;
+    // console.log('Owner: ', this.project?.owner.id, 'User: ', this.userService.userId, 'Username: ', this.userService.userName, 'Can create quest: ', this.canCreateQuest);
   }
 }

@@ -23,7 +23,7 @@ export class LayoutComponent {
         // Initalize user service
         const payload = this.authService.getUserFromToken();
         if (payload) {
-          this.userService.setUser(parseInt(payload.nameid), payload.username, payload.email);
+          this.userService.setUser(payload.userid, payload.username, payload.email);
         }
     }
 }

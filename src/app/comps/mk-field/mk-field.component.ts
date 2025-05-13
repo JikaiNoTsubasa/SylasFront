@@ -25,4 +25,8 @@ export class MkFieldComponent {
     this.editMode = false;
     this.onSave.emit(this.content);
   }
+
+  cancel(){
+    this.editMode = false;
+  }
 }

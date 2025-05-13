@@ -4,6 +4,7 @@
     </div>
     <div *ngIf="editMode" class="w100 h100">
         <textarea class="w100 h100 sy-area" style="box-sizing: border-box;" [(ngModel)]="content"></textarea>
+        <button (click)="cancel()" class="sy-button">Cancel</button>
         <button (click)="save()" class="sy-button">Save</button>
     </div>
 </div>

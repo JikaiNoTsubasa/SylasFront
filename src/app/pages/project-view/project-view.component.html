@@ -63,7 +63,7 @@
                     <h1><i class="fa-solid fa-file-lines"></i> {{selectedIssue.name}}</h1>
                     <div class="mb10">
                         <button class="sy-button" (click)="selectedIssue = null">Back</button>
-                        <button class="sy-button" (click)="openNewQuest(newQuestTemplate, {title: 'New Quest'})">New Quest</button>
+                        <button class="sy-button" (click)="openNewQuest(newQuestTemplate, {title: 'New Quest'})" *ngIf="canCreateQuest">New Quest</button>
 
                     </div>
                     <div class="w100 sy-box">
