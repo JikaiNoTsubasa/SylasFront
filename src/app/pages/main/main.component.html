@@ -25,6 +25,13 @@
         <div class="col-6">
             <div class="pad10">
                 <h3>Feed</h3>
+                <button class="sy-button" (click)="openAddTodoPopup(newTodoTemplate, {title: 'New Todo'})">New Todo</button>
+                <div class="w100">
+                    <span *ngIf="todos == null">Loading...</span>
+                    <div *ngFor="let todo of todos">
+                        #{{ todo.id }} - {{ todo.name }}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-3">
@@ -43,3 +50,27 @@
     </div>
 
 </div>
+
+<ng-template #newTodoTemplate>
+    <h2>New Quest</h2>
+    <form [formGroup]="formCreateTodo" (ngSubmit)="onAddTodo()">
+        <div class="sy-row-form w100">
+            Name*:<br>
+            <input class="sy-input-inverse w100" type="text" placeholder="Quest Name" formControlName="name">
+        </div>
+
+        <div class="sy-row-form w100">
+            Description:<br>
+            <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+        </div>
+
+        <div class="sy-row-form w100">
+            Due Date:<br>
+            <input class="sy-input-inverse w100" type="date" formControlName="dueDate">
+        </div>
+
+        <div class="sy-row-form w100">
+            <button class="sy-button-inverse">Add Todo</button>
+        </div>
+    </form>
+</ng-template>

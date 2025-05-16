@@ -12,6 +12,7 @@ import { Preferences } from "../Models/Database/Preferences";
 import { Customer } from "../Models/Database/Customer";
 import { GlobalParameter } from "../Models/Database/GlobalParameter";
 import { RequestUpdateProject } from "../Models/Requests/RequestUpdateProject";
+import { Todo } from "../Models/Database/Todo";
 
 @Injectable({
     providedIn: 'root'
@@ -202,6 +203,23 @@ export class SyService {
         let data = new FormData();
         data.append('value', value);
         return this.http.patch<GlobalParameter>(`${this.getEnvUrl()}/api/globalparameter/${id}`, data);
+    }
+//#endregion
+//#region Todo
+    fetchMyTodos(): Observable<Todo[]> {
+        return this.http.get<Todo[]>(`${this.getEnvUrl()}/api/mytodos`);
+    }
+
+    createTodo(name: string, description?: string, dueDate?: string): Observable<Todo> {
+        let data = new FormData();
+        data.append('name', name);
+        if (dueDate){
+            data.append('dueDate', dueDate);
+        }
+        if (description){
+            data.append('description', description);
+        }
+        return this.http.post<Todo>(`${this.getEnvUrl()}/api/todo`, data);
     }
 //#endregion
 }

@@ -1,16 +1,18 @@
-import { User } from "./User";
-
-export interface Preferences {
+export interface Todo{
     id: number;
     name: string;
-    user: User | null;
-    timeHistory: number;
-    timeChartMonth: number;
-    todoMaxDisplay: number;
+    description: string;
+    status: TodoStatus;
     createdDate: Date;
     updatedDate: Date;
     deletedDate: Date;
     createdBy: number;
     updatedBy: number;
     deletedBy: number;
+    isDeleted: boolean;
+}
+
+export enum TodoStatus{
+    TODO = 'TODO',
+    DONE = 'DONE'
 }
