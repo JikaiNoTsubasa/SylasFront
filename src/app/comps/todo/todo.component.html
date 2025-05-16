@@ -1,0 +1,9 @@
+<div class="todo-container w100">
+    <span *ngIf="!editMode">
+        <button class="todo-button">DONE</button>
+        <span (dblclick)="setToEdit()" class="todo-title">{{todo?.name}}</span>
+    </span>
+    <span *ngIf="editMode">
+        <input type="text" class="w100" [value]="todo?.name" (change)="onNameChange($event)"/>
+    </span>
+</div>

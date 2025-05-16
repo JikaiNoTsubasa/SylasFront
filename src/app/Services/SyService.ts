@@ -13,6 +13,7 @@ import { Customer } from "../Models/Database/Customer";
 import { GlobalParameter } from "../Models/Database/GlobalParameter";
 import { RequestUpdateProject } from "../Models/Requests/RequestUpdateProject";
 import { Todo } from "../Models/Database/Todo";
+import { RequestUpdateTodo } from "../Models/Requests/RequestUpdateTodo";
 
 @Injectable({
     providedIn: 'root'
@@ -220,6 +221,23 @@ export class SyService {
             data.append('description', description);
         }
         return this.http.post<Todo>(`${this.getEnvUrl()}/api/todo`, data);
+    }
+
+    updateTodo(id: number, req: RequestUpdateTodo): Observable<Todo> {
+        let data = new FormData();
+        if (req.name){
+            data.append('name', req.name);
+        }
+        if (req.description){
+            data.append('description', req.description);
+        }
+        if (req.status){
+            data.append('status', req.status.toString());
+        }
+        if (req.dueDate){
+            data.append('dueDate', req.dueDate);
+        }
+        return this.http.patch<Todo>(`${this.getEnvUrl()}/api/todo/${id}`, data);
     }
 //#endregion
 }

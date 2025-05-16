@@ -26,10 +26,11 @@
             <div class="pad10">
                 <h3>Feed</h3>
                 <button class="sy-button" (click)="openAddTodoPopup(newTodoTemplate, {title: 'New Todo'})">New Todo</button>
+                <br><br>
                 <div class="w100">
                     <span *ngIf="todos == null">Loading...</span>
                     <div *ngFor="let todo of todos">
-                        #{{ todo.id }} - {{ todo.name }}
+                        <todo [todo]="todo"></todo>
                     </div>
                 </div>
             </div>

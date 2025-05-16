@@ -1,0 +1,29 @@
+@use '../../styles/variables' as *;
+
+.todo-container{
+    display: block;
+    background-color: $fg-main;
+    color: $fg-menu;
+    padding: 5px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.todo-button{
+    display: inline-block;
+    cursor: pointer;
+    background-color: $fg-menu;
+    color: $fg-main;
+    font-size: 10px;
+    border: 0;
+}
+
+.todo-button:hover{
+    background-color: $fg-menu-50;
+    color: $fg-main;
+}
+
+.todo-title{
+    margin-left: 5px;
+}

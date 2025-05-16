@@ -10,11 +10,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { PopupService } from '../../Services/PopupService';
 import { Todo } from '../../Models/Database/Todo';
 import { CommonModule } from '@angular/common';
+import { TodoComponent } from "../../comps/todo/todo.component";
 
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [XpBarComponent, RouterModule, ReactiveFormsModule, CommonModule],
+    imports: [XpBarComponent, RouterModule, ReactiveFormsModule, CommonModule, TodoComponent],
     templateUrl: './main.component.html',
     styleUrl: './main.component.scss'
 })
