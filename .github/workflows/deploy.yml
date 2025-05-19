@@ -33,3 +33,4 @@ jobs:
                   port: 22
                   source: 'dist/sylas-front/browser'
                   target: '/var/www/html/sylas'
+                  strip_components: 3
