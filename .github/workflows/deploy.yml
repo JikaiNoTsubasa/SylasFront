@@ -24,6 +24,15 @@ jobs:
             - name: Build
               run: npm run build -- --configuration=production
 
+            - name: Clean remote directory via SSH
+              uses: appleboy/ssh-action@v1
+              with:
+                  host: ${{ secrets.FTP_SERVER }}
+                  username: ${{ secrets.FTP_USERNAME }}
+                  password: ${{ secrets.FTP_PASSWORD }}
+                  script: |
+                    rm -rf /var/www/sylas/*  # Supprime tout dans le dossier
+
             - name: Deploy
               uses: appleboy/scp-action@v1
               with:
@@ -33,4 +42,4 @@ jobs:
                   port: 22
                   source: 'dist/sylas-front/browser/*'
                   target: '/var/www/html/sylas'
-                  #strip_components: 3
+                  strip_components: 3
