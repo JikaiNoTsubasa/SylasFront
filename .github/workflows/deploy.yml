@@ -31,6 +31,6 @@ jobs:
                   username: ${{ secrets.FTP_USERNAME }}
                   password: ${{ secrets.FTP_PASSWORD }}
                   port: 22
-                  source: 'dist/sylas-front/browser'
+                  source: 'dist/sylas-front/browser/*'
                   target: '/var/www/html/sylas'
-                  strip_components: 3
+                  #strip_components: 3
