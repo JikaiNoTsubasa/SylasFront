@@ -56,6 +56,12 @@ export class ProjectViewComponent {
     description: new FormControl(''),
   });
 
+  // Form project
+  projectForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    description: new FormControl(''),
+  });
+
   ngOnInit(){
     this.refreshProject();
   }
@@ -197,5 +203,29 @@ export class ProjectViewComponent {
   calculateCanCreateQuest(){
     this.canCreateQuest = this.project?.owner.id == this.userService.userId;
     // console.log('Owner: ', this.project?.owner.id, 'User: ', this.userService.userId, 'Username: ', this.userService.userName, 'Can create quest: ', this.canCreateQuest);
+  }
+
+  openEditProject(template: TemplateRef<any>, context = {}){
+    if (this.project == null) return;
+    this.projectForm.controls['name'].setValue(this.project.name);
+    this.projectForm.controls['description'].setValue(this.project.description);
+    this.popup.open(template, context);
+  }
+
+  onEditProject(){
+    let req: RequestUpdateProject = new RequestUpdateProject();
+    req.name = this.projectForm.value.name ?? null;
+    req.description = this.projectForm.value.description ?? null;
+    this.syService.updateProject(this.project?.id ?? 0, req).subscribe({
+      next: () => {
+        this.notService.info("Project updated");
+        this.refreshProject();
+        this.popup.close();
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {}
+    })
   }
 }

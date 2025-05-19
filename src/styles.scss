@@ -123,6 +123,14 @@ body{
     height: 100%;
 }
 
+.hmin400{
+    min-height: 400px;
+}
+
+.hauto{
+    height: auto;
+}
+
 .bg-beige{
     background-color: rgba($fg-main, 0.1);
 }

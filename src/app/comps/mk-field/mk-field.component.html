@@ -1,9 +1,9 @@
-<div class="w100 h100 bg-beige">
-    <div *ngIf="!editMode" (dblclick)="toggleEdit()" class="w100 h100 pad10 bbox scrollable">
+<div class="w100 hauto bg-beige">
+    <div *ngIf="!editMode" (dblclick)="toggleEdit()" class="w100 hauto hmin400 pad10 bbox scrollable">
         <markdown [data]="content"></markdown>
     </div>
-    <div *ngIf="editMode" class="w100 h100">
-        <textarea class="w100 h100 sy-area" style="box-sizing: border-box;" [(ngModel)]="content"></textarea>
+    <div *ngIf="editMode" class="w100 hauto">
+        <textarea class="w100 hauto hmin400 sy-area" style="box-sizing: border-box;" [(ngModel)]="content"></textarea>
         <button (click)="cancel()" class="sy-button">Cancel</button>
         <button (click)="save()" class="sy-button">Save</button>
     </div>

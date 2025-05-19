@@ -5,12 +5,15 @@
             <div class="pad10">
                 <h1>{{project.name}}</h1>
                 <div class="mb10">
+                    <button (click)="openEditProject(editProjectTemplate, {title: 'Edit Project'})" class="sy-button">Edit</button>
                     <button (click)="deleteProject()" class="sy-button">Delete</button>
                 </div>
+                <mk-field [content]="project.description" (onSave)="updateProjectDescription($event)"></mk-field>
+                <!--
                 <div style="height: 400px;">
-                    <mk-field [content]="project.description" (onSave)="updateProjectDescription($event)"></mk-field>
 
                 </div>
+            -->
 
             </div>
         </div>
@@ -221,6 +224,25 @@
 
         <div class="sy-row-form w100">
             <button class="sy-button-inverse">Add Quest</button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #editProjectTemplate>
+    <h2>Edit Project</h2>
+    <form [formGroup]="projectForm" (ngSubmit)="onEditProject()">
+        <div class="sy-row-form w100">
+            Name*:<br>
+            <input class="sy-input-inverse w100" type="text" placeholder="Project Name" formControlName="name">
+        </div>
+
+        <div class="sy-row-form w100">
+            Description <img src="/images/markdown.svg"  height="14px" alt="Markdown enabled" title="Markdown enabled">:<br>
+            <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+        </div>
+
+        <div class="sy-row-form w100">
+            <button class="sy-button-inverse">Update</button>
         </div>
     </form>
 </ng-template>

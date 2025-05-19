@@ -30,7 +30,7 @@
                 <div class="w100">
                     <span *ngIf="todos == null">Loading...</span>
                     <div *ngFor="let todo of todos">
-                        <todo [todo]="todo"></todo>
+                        <todo [todo]="todo" (onDone)="refreshTodoList()"></todo>
                     </div>
                 </div>
             </div>

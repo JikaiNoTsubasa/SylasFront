@@ -1,6 +1,6 @@
 <div class="todo-container w100">
     <span *ngIf="!editMode">
-        <button class="todo-button">DONE</button>
+        <button class="todo-button" (click)="onDoneChange()">DONE</button>
         <span (dblclick)="setToEdit()" class="todo-title">{{todo?.name}}</span>
     </span>
     <span *ngIf="editMode">

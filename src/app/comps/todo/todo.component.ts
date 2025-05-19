@@ -1,5 +1,5 @@
-import { Component, inject, Input } from '@angular/core';
-import { Todo } from '../../Models/Database/Todo';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Todo, TodoStatus } from '../../Models/Database/Todo';
 import { SyService } from '../../Services/SyService';
 import { CommonModule } from '@angular/common';
 import { RequestUpdateTodo } from '../../Models/Requests/RequestUpdateTodo';
@@ -17,6 +17,7 @@ export class TodoComponent {
   notService = inject(NotificationService);
 
   @Input() todo: Todo | null = null;
+  @Output() onDone: EventEmitter<Todo> = new EventEmitter<Todo>();
   editMode: boolean = false;
 
   setToEdit(){
@@ -39,4 +40,22 @@ export class TodoComponent {
       }
     });
   }
+
+  onDoneChange(){
+    let req : RequestUpdateTodo = new RequestUpdateTodo();
+    req.status = TodoStatus.DONE;
+
+    this.syService.updateTodo(this.todo?.id ?? 0, req).subscribe({
+      next: (todo) => {
+        this.notService.info("Updated todo "+this.todo?.id);
+        this.onDone.emit(this.todo!);
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {
+      }
+    });
+  }
+    
 }
