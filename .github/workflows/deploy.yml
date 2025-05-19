@@ -30,8 +30,7 @@ jobs:
                   host: ${{ secrets.FTP_SERVER }}
                   username: ${{ secrets.FTP_USERNAME }}
                   password: ${{ secrets.FTP_PASSWORD }}
-                  script: |
-                    rm -rf /var/www/sylas/*  # Supprime tout dans le dossier
+                  script: rm -rf /var/www/html/sylas/*
 
             - name: Deploy
               uses: appleboy/scp-action@v1
