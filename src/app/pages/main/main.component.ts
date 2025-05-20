@@ -11,6 +11,7 @@ import { PopupService } from '../../Services/PopupService';
 import { Todo } from '../../Models/Database/Todo';
 import { CommonModule } from '@angular/common';
 import { TodoComponent } from "../../comps/todo/todo.component";
+import { RequestUpdateTodo } from '../../Models/Requests/RequestUpdateTodo';
 
 @Component({
     selector: 'app-main',
@@ -36,6 +37,13 @@ export class MainComponent {
     name: new FormControl('', Validators.required),
     description: new FormControl(''),
     dueDate: new FormControl('')
+  });
+
+  formEditTodo = new FormGroup({
+    name: new FormControl('', Validators.required),
+    description: new FormControl(''),
+    dueDate: new FormControl(''),
+    id: new FormControl('')
   });
 
   ngOnInit(){
@@ -84,6 +92,38 @@ export class MainComponent {
       this.syService.createTodo(todoName, description, dueDate).subscribe({
         next: () => {
           this.formCreateTodo.reset();
+          this.refreshTodoList();
+          this.popupService.close();
+        },
+        error: (e) => {
+          this.notification.error(e.message);
+        }
+      });
+    }else{
+      this.notification.error("Invalid form");
+    }
+  }
+
+  openEditTodoPopup(template: TemplateRef<any>, context: any = {}, todo: Todo){
+    this.popupService.open(template, context);
+    this.formEditTodo.controls['name'].setValue(todo.name);
+    this.formEditTodo.controls['description'].setValue(todo.description);
+    this.formEditTodo.controls['dueDate'].setValue(todo.dueDate.toString());
+    this.formEditTodo.controls['id'].setValue(todo.id.toString());
+  }
+
+  onEditTodo(){
+    if (this.formEditTodo.valid) {
+      let req: RequestUpdateTodo = new RequestUpdateTodo();
+      req.name = this.formEditTodo.value.name ?? "Default Name";
+      req.description = this.formEditTodo.value.description ?? null;
+      req.dueDate = this.formEditTodo.value.dueDate ?? null;
+
+      let id = parseInt(this.formEditTodo.value.id ?? "0");
+
+      this.syService.updateTodo(id, req).subscribe({
+        next: () => {
+          this.formEditTodo.reset();
           this.refreshTodoList();
           this.popupService.close();
         },

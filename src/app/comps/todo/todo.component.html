@@ -1,6 +1,9 @@
 <div class="todo-container w100">
     <span *ngIf="!editMode">
-        <button class="todo-button" (click)="onDoneChange()">DONE</button>
+        <i class="fa-regular fa-square-full sy-link-inverse" (click)="onDoneChange()"></i>
+        <span style="width: 5px; display: inline-block;"></span>
+        <i class="fa-solid fa-pen-to-square sy-link-inverse" (click)="onEditClick()"></i>
+        <!--<button class="todo-button" (click)="onDoneChange()">DONE</button>-->
         <span (dblclick)="setToEdit()" class="todo-title">{{todo?.name}}</span>
     </span>
     <span *ngIf="editMode">

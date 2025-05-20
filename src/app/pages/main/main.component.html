@@ -30,7 +30,7 @@
                 <div class="w100">
                     <span *ngIf="todos == null">Loading...</span>
                     <div *ngFor="let todo of todos">
-                        <todo [todo]="todo" (onDone)="refreshTodoList()"></todo>
+                        <todo [todo]="todo" (onDone)="refreshTodoList()" (onEdit)="openEditTodoPopup(editTodoTemplate, {title: 'Edit Todo'}, todo)"></todo>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
 </div>
 
 <ng-template #newTodoTemplate>
-    <h2>New Quest</h2>
+    <h2>New Todo</h2>
     <form [formGroup]="formCreateTodo" (ngSubmit)="onAddTodo()">
         <div class="sy-row-form w100">
             Name*:<br>
@@ -72,6 +72,31 @@
 
         <div class="sy-row-form w100">
             <button class="sy-button-inverse">Add Todo</button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #editTodoTemplate>
+    <h2>New Quest</h2>
+    <form [formGroup]="formEditTodo" (ngSubmit)="onEditTodo()">
+        <div class="sy-row-form w100">
+            Name*:<br>
+            <input class="sy-input-inverse w100" type="text" placeholder="Todo Name" formControlName="name">
+        </div>
+
+        <div class="sy-row-form w100">
+            Description:<br>
+            <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+        </div>
+
+        <div class="sy-row-form w100">
+            Due Date:<br>
+            <input class="sy-input-inverse w100" type="date" formControlName="dueDate">
+            <input type="hidden" formControlName="id">
+        </div>
+
+        <div class="sy-row-form w100">
+            <button class="sy-button-inverse">Update</button>
         </div>
     </form>
 </ng-template>

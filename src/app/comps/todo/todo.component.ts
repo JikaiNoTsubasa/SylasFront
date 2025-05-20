@@ -18,6 +18,7 @@ export class TodoComponent {
 
   @Input() todo: Todo | null = null;
   @Output() onDone: EventEmitter<Todo> = new EventEmitter<Todo>();
+  @Output() onEdit: EventEmitter<Todo> = new EventEmitter<Todo>();
   editMode: boolean = false;
 
   setToEdit(){
@@ -56,6 +57,10 @@ export class TodoComponent {
       complete: () => {
       }
     });
+  }
+
+  onEditClick(){
+    this.onEdit.emit(this.todo!);
   }
     
 }

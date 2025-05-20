@@ -2,6 +2,7 @@ export interface Todo{
     id: number;
     name: string;
     description: string;
+    dueDate: Date;
     status: TodoStatus;
     createdDate: Date;
     updatedDate: Date;
