@@ -1,0 +1,17 @@
+<div class="sy-document w100">
+    <div class="sy-document-title">
+        <i class="fa-solid fa-file-lines"></i> {{document.name}}
+        <span class="sy-document-toolbar">
+            <i class="fa-solid fa-upload"></i>
+            <i class="fa-solid fa-download"></i>
+            <i class="fa-solid fa-trash"></i>
+        </span>
+    </div>
+    <div class="sy-document-content">
+        {{document.currentVersion.version}} - {{document.currentVersion.path}}
+        <span class="sy-bar"></span>
+        <div class="w100" *ngFor="let version of document.versions">
+            {{version.version}} - {{version.path}}
+        </div>
+    </div>
+</div>

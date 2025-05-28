@@ -14,6 +14,7 @@ import { GlobalParameter } from "../Models/Database/GlobalParameter";
 import { RequestUpdateProject } from "../Models/Requests/RequestUpdateProject";
 import { Todo } from "../Models/Database/Todo";
 import { RequestUpdateTodo } from "../Models/Requests/RequestUpdateTodo";
+import { Document } from "../Models/Database/Document";
 
 @Injectable({
     providedIn: 'root'
@@ -238,6 +239,23 @@ export class SyService {
             data.append('dueDate', req.dueDate);
         }
         return this.http.patch<Todo>(`${this.getEnvUrl()}/api/todo/${id}`, data);
+    }
+//#endregion
+
+//#region
+    createDocument(name: string, file: File, id?: number): Observable<Document> {
+        let data = new FormData();
+        data.append('file', file);
+        data.append('name', name);
+        if (id){
+            data.append('entityId', id.toString());
+        }
+        return this.http.post<Document>(`${this.getEnvUrl()}/api/document`, data);
+    }
+
+    fetchDocumentsForEntity(id: number): Observable<Document[]> {
+        let params = new HttpParams().append('entityId', id.toString());
+        return this.http.get<Document[]>(`${this.getEnvUrl()}/api/documents`, {params: params});
     }
 //#endregion
 }

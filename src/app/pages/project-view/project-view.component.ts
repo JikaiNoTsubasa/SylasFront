@@ -10,11 +10,15 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RequestUpdateProject } from '../../Models/Requests/RequestUpdateProject';
 import { MarkdownModule } from 'ngx-markdown';
 import { UserService } from '../../Services/UserService';
+import { TabComponent } from "../../comps/tab/tab.component";
+import { TabsComponent } from '../../comps/tabs/tabs.component';
+import { Document } from '../../Models/Database/Document';
+import { DocumentComponent } from "../../comps/document/document.component";
 
 @Component({
   selector: 'app-project-view',
   standalone: true,
-  imports: [CommonModule, MkFieldComponent, RouterModule, ReactiveFormsModule, MarkdownModule],
+  imports: [CommonModule, MkFieldComponent, RouterModule, ReactiveFormsModule, MarkdownModule, TabsComponent, TabComponent, DocumentComponent],
   templateUrl: './project-view.component.html',
   styleUrl: './project-view.component.scss'
 })
@@ -60,6 +64,16 @@ export class ProjectViewComponent {
   projectForm = new FormGroup({
     name: new FormControl('', Validators.required),
     description: new FormControl(''),
+  });
+
+  // Document variables
+  fileName = 'No file selected';
+  fileData: any = null;
+  documents: Document[] | null = null;
+
+  // Form add document
+  addDocumentForm = new FormGroup({
+    file: new FormControl('', Validators.required),
   });
 
   ngOnInit(){
@@ -227,5 +241,53 @@ export class ProjectViewComponent {
       },
       complete: () => {}
     })
+  }
+
+  openAddDocument(template: TemplateRef<any>, context = {}){
+    if (this.project == null) return;
+    this.popup.open(template, context);
+  }
+
+  onSubmitAddDocument(){
+    this.syService.createDocument(this.fileName, this.fileData, this.project?.id).subscribe({
+      next: () => {
+        this.notService.info("Document added");
+        this.refreshDocuments();
+        this.popup.close();
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {
+      }
+    })
+  }
+
+  onFileChange(event: any) {
+    this.fileName = event.target.files[0].name;
+    this.fileData = event.target.files[0];
+  }
+
+  refreshDocuments(){
+    this.syService.fetchDocumentsForEntity(this.project?.id ?? 0).subscribe({
+      next: (documents) => {
+        this.documents = documents;
+      },
+      error: (e) => {
+        this.notService.error(e.message);
+      },
+      complete: () => {}
+    });
+  }
+
+  onTabChange(name: string){
+    switch (name){
+      case 'Documents':
+        this.refreshDocuments();
+        break;
+      case 'Project':
+        this.refreshProject();
+        break;
+    }
   }
 }

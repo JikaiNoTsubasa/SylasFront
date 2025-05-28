@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TabComponent } from '../tab/tab.component';
 import { CommonModule } from '@angular/common';
 
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TabsComponent {
   tabs: TabComponent[] = [];
+  @Output() onTabChange: EventEmitter<string> = new EventEmitter<string>();
 
   activeIdx = 0;
 
@@ -27,6 +28,7 @@ export class TabsComponent {
       });
       tab.active = true;
       this.activeIdx = this.tabs.indexOf(tab);
+      this.onTabChange.emit(tab.tabTitle);
     }
   }
 }

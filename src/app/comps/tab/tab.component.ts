@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TabsComponent } from '../tabs/tabs.component';
 
 @Component({
@@ -10,8 +10,8 @@ import { TabsComponent } from '../tabs/tabs.component';
 })
 export class TabComponent {
 
-  @Input() title: string = 'Default';
-  @Input() icon: string | null = null;
+  @Input() tabTitle: string = 'Default';
+  @Input() tabIcon: string | null = null;
 
   active: boolean = false;
 

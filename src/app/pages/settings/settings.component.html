@@ -1,6 +1,6 @@
 <div class="sy-page">
     <tabs>
-        <tab icon="fa-solid fa-user" title="Me">
+        <tab tabIcon="fa-solid fa-user" tabTitle="Me">
             <div *ngIf="!meUser">
                 No user loaded
             </div>
@@ -55,7 +55,7 @@
             </div>
         </tab>
     
-        <tab icon="fa-solid fa-calendar" title="Preferences">
+        <tab tabIcon="fa-solid fa-calendar" tabTitle="Preferences">
             <div class="grid">
                 <div class="col-6">
                     <div class="pad10 w100">
@@ -91,7 +91,7 @@
             </div>
         </tab>
 
-        <tab icon="fa-solid fa-toolbox" title="Application">
+        <tab tabIcon="fa-solid fa-toolbox" tabTitle="Application">
             <h2>Application</h2>
             <table>
                 <tr>
@@ -111,7 +111,7 @@
             </table>
         </tab>
 
-        <tab icon="fa-solid fa-users" title="Users">
+        <tab tabIcon="fa-solid fa-users" tabTitle="Users">
             <h2>Users</h2>
             <div>
                 <button class="sy-button" (click)="openCreateUserModal(createUserTemplate, { title: 'Create User' })">Create</button>
