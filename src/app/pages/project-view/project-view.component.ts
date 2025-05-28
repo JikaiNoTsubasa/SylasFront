@@ -70,6 +70,7 @@ export class ProjectViewComponent {
   fileName = 'No file selected';
   fileData: any = null;
   documents: Document[] | null = null;
+  uploadingDocument: boolean = false;
 
   // Form add document
   addDocumentForm = new FormGroup({
@@ -249,11 +250,13 @@ export class ProjectViewComponent {
   }
 
   onSubmitAddDocument(){
+    this.uploadingDocument = true;
     this.syService.createDocument(this.fileName, this.fileData, this.project?.id).subscribe({
       next: () => {
         this.notService.info("Document added");
         this.refreshDocuments();
         this.popup.close();
+        this.uploadingDocument = false;
       },
       error: (e) => {
         this.notService.error(e.message);

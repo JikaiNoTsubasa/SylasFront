@@ -1,5 +1,4 @@
 <div class="sy-page">
-    <span *ngIf="loading">Loading...</span>
     <tabs (onTabChange)="onTabChange($event)">
         <tab tabTitle="Project">
             <div *ngIf="project" class="grid">
@@ -267,7 +266,7 @@
 
 <ng-template #addDocumentTemplate>
     <h2>Upload Document</h2>
-    <form [formGroup]="addDocumentForm" (ngSubmit)="onSubmitAddDocument()">
+    <form *ngIf="!uploadingDocument" [formGroup]="addDocumentForm" (ngSubmit)="onSubmitAddDocument()">
 
         <div class="sy-row-form w100">
             File*:<br>
@@ -278,4 +277,7 @@
             <button class="sy-button-inverse">Upload</button>
         </div>
     </form>
+    <div *ngIf="uploadingDocument">
+        Uploading...
+    </div>
 </ng-template>
