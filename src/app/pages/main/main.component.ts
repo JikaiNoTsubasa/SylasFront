@@ -66,7 +66,7 @@ export class MainComponent {
   }
 
   refreshTodoList(){
-    this.syService.fetchMyTodos().subscribe({
+    this.syService.fetchAllMyTodos().subscribe({
       next: (data) => {
         this.todos = data;
       },

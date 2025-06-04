@@ -212,6 +212,11 @@ export class SyService {
         return this.http.get<Todo[]>(`${this.getEnvUrl()}/api/mytodos`);
     }
 
+    fetchAllMyTodos(): Observable<Todo[]> {
+        let params = new HttpParams().append('hasLimit', 'false');
+        return this.http.get<Todo[]>(`${this.getEnvUrl()}/api/mytodos`, {params: params});
+    }
+
     createTodo(name: string, description?: string, dueDate?: string): Observable<Todo> {
         let data = new FormData();
         data.append('name', name);
