@@ -15,6 +15,7 @@ import { RequestUpdateProject } from "../Models/Requests/RequestUpdateProject";
 import { Todo } from "../Models/Database/Todo";
 import { RequestUpdateTodo } from "../Models/Requests/RequestUpdateTodo";
 import { Document } from "../Models/Database/Document";
+import { ResponsePlanningWeek } from "../Models/Requests/ResponsePlanningWeek";
 
 @Injectable({
     providedIn: 'root'
@@ -261,6 +262,11 @@ export class SyService {
     fetchDocumentsForEntity(id: number): Observable<Document[]> {
         let params = new HttpParams().append('entityId', id.toString());
         return this.http.get<Document[]>(`${this.getEnvUrl()}/api/documents`, {params: params});
+    }
+//#endregion
+//#region Planning
+    fetchCurrentWeekPlanning(): Observable<ResponsePlanningWeek> {
+        return this.http.get<ResponsePlanningWeek>(`${this.getEnvUrl()}/api/currentplannings`);
     }
 //#endregion
 }

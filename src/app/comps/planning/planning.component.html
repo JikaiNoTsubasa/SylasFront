@@ -1,0 +1,15 @@
+<div class="sy-planning-container">
+    Week {{selectedWeek}} - {{selectedYear}}
+    <div class="sy-planning">
+        <div *ngFor="let day of days" class="sy-plan-item">
+            <span class="sy-plan-day">{{day | date:'dd'}}</span><br>
+            <div *ngFor="let item of getPlanItemForDate(day)" class="sy-plan-item-content">
+                <span class="sy-plan-item-content">
+                    {{item.name}}
+
+                </span>
+            </div>
+        </div>
+    </div>
+    <i class="fa-solid fa-arrow-left" style="margin-right: 10px"></i><i class="fa-solid fa-arrow-right" ></i>
+</div>

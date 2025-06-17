@@ -12,11 +12,12 @@ import { Todo } from '../../Models/Database/Todo';
 import { CommonModule } from '@angular/common';
 import { TodoComponent } from "../../comps/todo/todo.component";
 import { RequestUpdateTodo } from '../../Models/Requests/RequestUpdateTodo';
+import { PlanningComponent } from "../../comps/planning/planning.component";
 
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [XpBarComponent, RouterModule, ReactiveFormsModule, CommonModule, TodoComponent],
+    imports: [ /*XpBarComponent,*/ RouterModule, ReactiveFormsModule, CommonModule, TodoComponent, PlanningComponent],
     templateUrl: './main.component.html',
     styleUrl: './main.component.scss'
 })

@@ -1,0 +1,37 @@
+@use '../../styles/variables' as *;
+
+
+.sy-planning-container{
+    width: 100%;
+    color: $fg-main;
+}
+
+.sy-planning{
+    display: flex;
+    width: 100%;
+    background-color: $fg-main;
+    color: $fg-menu;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.sy-plan-item{
+    flex: 1 1 0;
+    border: 1px solid $fg-menu;
+    padding: 5px;
+    text-align: left;
+    min-height: 80px;
+}
+
+.sy-plan-day{
+    font-size: 12px;
+}
+
+.sy-plan-item-content{
+    font-size: 12px;
+    background-color: $fg-menu;
+    color: $fg-main;
+    box-sizing: border-box;
+    padding: 0px 5px;
+    margin-bottom: 2px;
+}
