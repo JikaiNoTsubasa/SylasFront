@@ -8,7 +8,10 @@
             <span class="sy-plan-day">{{day | date:'EEE dd'}}</span><br>
             <div *ngFor="let item of getPlanItemForDate(day)" class="sy-plan-item-content" (click)="openEditPlanningItemModal(updatePlanningItemTemplate, {title: 'Update Planning Item'}, item)">
                 <span>
-                    <i class="fa-solid fa-lock" *ngIf="item.owner != null"></i> {{item.name}}
+                    <i class="fa-solid fa-lock" *ngIf="item.owner != null"></i>
+                    <span *ngIf="item.description != null && item.description.length > 0 && item.owner != null" style="width: 5px; display: inline-block;"></span>
+                    <i class="fa-regular fa-file" *ngIf="item.description != null && item.description.length > 0"></i>
+                    {{item.name}}
                 </span>
             </div>
         </div>
