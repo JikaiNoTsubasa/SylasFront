@@ -2,14 +2,83 @@
     Week {{selectedWeek}} - {{selectedYear}}
     <div class="sy-planning">
         <div *ngFor="let day of days" class="sy-plan-item">
+            <div class="sy-plan-add">
+                <i class="fa-solid fa-plus clickable" (click)="openAddPlanningItemModal(addPlanningItemTemplate, {title: 'Add Planning Item'}, day)"></i>
+            </div>
             <span class="sy-plan-day">{{day | date:'dd'}}</span><br>
-            <div *ngFor="let item of getPlanItemForDate(day)" class="sy-plan-item-content">
-                <span class="sy-plan-item-content">
+            <div *ngFor="let item of getPlanItemForDate(day)" class="sy-plan-item-content" (click)="openEditPlanningItemModal(updatePlanningItemTemplate, {title: 'Update Planning Item'}, item)">
+                <span>
                     {{item.name}}
 
                 </span>
             </div>
         </div>
     </div>
-    <i class="fa-solid fa-arrow-left" style="margin-right: 10px"></i><i class="fa-solid fa-arrow-right" ></i>
+    <i class="fa-solid fa-arrow-left clickable" style="margin-right: 10px" (click)="previousWeek()"></i><i class="fa-solid fa-plus clickable" style="margin-right: 10px" (click)="openAddPlanningItemModal(addPlanningItemTemplate, {title: 'Add Planning Item'})"></i><i class="fa-solid fa-arrow-right clickable" (click)="nextWeek()"></i>
 </div>
+
+<ng-template #addPlanningItemTemplate>
+    <h1>Add Planning Item</h1>
+    <form [formGroup]="formAddPlan" (ngSubmit)="onSubmitAddPlan()">
+        <table class="w100">
+            <tr>
+                <td>
+                    <div class="sy-row-form w100">
+                        Name*:<br>
+                        <input class="sy-input-inverse w100" type="text" placeholder="Planning Item Name" formControlName="name">
+                        
+                    </div>
+                </td>
+                <td>
+                    <div class="sy-row-form w100">
+                        Date*:<br>
+                        <input class="sy-input-inverse w100" type="date" formControlName="date">
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+        <div class="sy-row-form w100">
+            Date:<br>
+            <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+        </div>
+        <div class="sy-row-form w100">
+            <button class="sy-button-inverse">Add To Planning</button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #updatePlanningItemTemplate>
+    <h1>Edit Planning Item</h1>
+    <form [formGroup]="formAddPlan" (ngSubmit)="onSubmitUpdatePlan()">
+        <table class="w100">
+            <tr>
+                <td>
+                    <div class="sy-row-form w100">
+                        Name*:<br>
+                        <input class="sy-input-inverse w100" type="text" placeholder="Planning Item Name" formControlName="name">
+                        
+                    </div>
+                </td>
+                <td>
+                    <div class="sy-row-form w100">
+                        Date*:<br>
+                        <input class="sy-input-inverse w100" type="date" formControlName="date">
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+        <div class="sy-row-form w100">
+            Date:<br>
+            <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+        </div>
+        <div class="sy-row-form w100">
+            <button class="sy-button-inverse">Update</button>
+        </div>
+    </form>
+
+    <div class="sy-row-form w100">
+            <button class="sy-button-inverse" (click)="deleteCurrentItem()">Delete this Planning Item</button>
+    </div>
+</ng-template>

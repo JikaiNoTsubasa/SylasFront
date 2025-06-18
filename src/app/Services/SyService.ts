@@ -16,6 +16,7 @@ import { Todo } from "../Models/Database/Todo";
 import { RequestUpdateTodo } from "../Models/Requests/RequestUpdateTodo";
 import { Document } from "../Models/Database/Document";
 import { ResponsePlanningWeek } from "../Models/Requests/ResponsePlanningWeek";
+import { PlanningItem } from "../Models/Database/PlanningItem";
 
 @Injectable({
     providedIn: 'root'
@@ -267,6 +268,33 @@ export class SyService {
 //#region Planning
     fetchCurrentWeekPlanning(): Observable<ResponsePlanningWeek> {
         return this.http.get<ResponsePlanningWeek>(`${this.getEnvUrl()}/api/currentplannings`);
+    }
+
+    fetchWeekPlanning(week: number, year: number): Observable<ResponsePlanningWeek> {
+        return this.http.get<ResponsePlanningWeek>(`${this.getEnvUrl()}/api/planning/${week}/${year}`);
+
+    }
+
+    createPlan(name: string, date: string, description: string): Observable<PlanningItem> {
+        let data = new FormData();
+        data.append('name', name);
+        data.append('plannedDate', date);
+        if (description)
+            data.append('description', description);
+        return this.http.post<PlanningItem>(`${this.getEnvUrl()}/api/planning`, data);
+    }
+
+    updatePlan(id: number, name: string, date: string, description: string): Observable<PlanningItem> {
+        let data = new FormData();
+        data.append('name', name);
+        data.append('plannedDate', date);
+        if (description)
+            data.append('description', description);
+        return this.http.put<PlanningItem>(`${this.getEnvUrl()}/api/planning/${id}`, data);
+    }
+
+    deletePlan(id: number): Observable<any> {
+        return this.http.delete<any>(`${this.getEnvUrl()}/api/planning/${id}`);
     }
 //#endregion
 }

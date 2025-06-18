@@ -1,9 +1,11 @@
 <div class="backdrop" *ngIf="isOpen" (click)="close()"></div>
 <div class="side-panel" [class.open]="isOpen" (click)="$event.stopPropagation()">
+  <!--
   <div class="header">
     <h3>{{ title }}</h3>
     <button class="close-btn" (click)="close()">✕</button>
   </div>
+-->
   <div class="content">
     <ng-container 
       *ngIf="content"

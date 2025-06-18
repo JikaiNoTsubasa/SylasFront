@@ -16,6 +16,7 @@
 }
 
 .sy-plan-item{
+    position: relative;
     flex: 1 1 0;
     border: 1px solid $fg-menu;
     padding: 5px;
@@ -34,4 +35,15 @@
     box-sizing: border-box;
     padding: 0px 5px;
     margin-bottom: 2px;
+}
+
+.sy-plan-item-content:hover{
+    cursor: pointer;
+}
+
+.sy-plan-add{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: $fg-menu;
 }
