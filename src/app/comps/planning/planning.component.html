@@ -5,7 +5,7 @@
             <div class="sy-plan-add">
                 <i class="fa-solid fa-plus clickable" (click)="openAddPlanningItemModal(addPlanningItemTemplate, {title: 'Add Planning Item'}, day)"></i>
             </div>
-            <span class="sy-plan-day">{{day | date:'dd'}}</span><br>
+            <span class="sy-plan-day">{{day | date:'EEE dd'}}</span><br>
             <div *ngFor="let item of getPlanItemForDate(day)" class="sy-plan-item-content" (click)="openEditPlanningItemModal(updatePlanningItemTemplate, {title: 'Update Planning Item'}, item)">
                 <span>
                     {{item.name}}

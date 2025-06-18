@@ -5,6 +5,7 @@
     width: 100%;
 }
 
+/*
 .sy-main-menu-item{
     text-decoration: none;
     display: block;
@@ -25,11 +26,32 @@
     background: linear-gradient(to left, $fg-main, $fg-main-alpha);
     transition-duration: 0.5s;
 }
+*/
+
+.sy-main-menu-item{
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    // margin-top: 20px;
+    height: 3rem;
+    line-height: 3rem;
+    color: $fg-main;
+    padding-left: 20px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.sy-main-menu-item:hover{
+    color: $fg-menu;
+    // background: linear-gradient(to left, $fg-main-alpha, $fg-main);
+    background-color: $fg-main;
+    transition-duration: 0.5s;
+}
 
 .sy-main-title{
     display: inline-block;
     font-size: 45px;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
     // border-bottom: 1px solid $fg-main;
 }
 
