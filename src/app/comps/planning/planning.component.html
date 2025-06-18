@@ -8,8 +8,7 @@
             <span class="sy-plan-day">{{day | date:'EEE dd'}}</span><br>
             <div *ngFor="let item of getPlanItemForDate(day)" class="sy-plan-item-content" (click)="openEditPlanningItemModal(updatePlanningItemTemplate, {title: 'Update Planning Item'}, item)">
                 <span>
-                    {{item.name}}
-
+                    <i class="fa-solid fa-lock" *ngIf="item.owner != null"></i> {{item.name}}
                 </span>
             </div>
         </div>
@@ -43,6 +42,12 @@
             <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
         </div>
         <div class="sy-row-form w100">
+            <label class="sbi-checkbox-container"> Will only be visible by you.
+                <input type="checkbox" formControlName="isPrivate">
+                <span class="sbi-checkmark"></span>
+            </label>
+        </div>
+        <div class="sy-row-form w100">
             <button class="sy-button-inverse">Add To Planning</button>
         </div>
     </form>
@@ -72,6 +77,12 @@
         <div class="sy-row-form w100">
             Date:<br>
             <textarea class="sy-area-inverse w100" style="height: 400px; resize: none;" placeholder="Description" formControlName="description" ></textarea>
+        </div>
+        <div class="sy-row-form w100">
+            <label class="sbi-checkbox-container"> Will only be visible by you.
+                <input type="checkbox" formControlName="isPrivate">
+                <span class="sbi-checkmark"></span>
+            </label>
         </div>
         <div class="sy-row-form w100">
             <button class="sy-button-inverse">Update</button>

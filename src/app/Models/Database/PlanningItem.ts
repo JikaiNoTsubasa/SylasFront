@@ -6,4 +6,5 @@ export interface PlanningItem{
     description: string | null;
     plannedDate: Date;
     user: User | null;
+    owner: User | null;
 }

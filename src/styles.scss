@@ -184,6 +184,68 @@ body{
     color: $fg-menu;
 }
 
+/* checkbox */
+.sbi-checkbox-container{
+    display: inline-block;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-right: 20px;
+}
+
+.sbi-checkbox-container input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.sbi-checkbox-container:hover input ~ .sbi-checkmark {
+    background-color: $fg-primary;
+}
+
+/*
+.sbi-checkbox-container input:checked ~ .sbi-checkmark {
+    background-color: $fg-primary;
+}
+*/
+
+.sbi-checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 12px;
+    width: 12px;
+    border: 1px solid $fg-menu;
+}
+
+.sbi-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.sbi-checkbox-container input:checked ~ .sbi-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.sbi-checkbox-container .sbi-checkmark:after {
+    left: 2px;
+    top: 2px;
+    width: 8px;
+    height: 8px;
+    background-color: $fg-menu;
+}
+
 .mb10{
     margin-bottom: 10px;
 }

@@ -275,21 +275,23 @@ export class SyService {
 
     }
 
-    createPlan(name: string, date: string, description: string): Observable<PlanningItem> {
+    createPlan(name: string, date: string, description: string, isPrivate: boolean): Observable<PlanningItem> {
         let data = new FormData();
         data.append('name', name);
         data.append('plannedDate', date);
         if (description)
             data.append('description', description);
+        data.append('isPrivate', isPrivate.toString());
         return this.http.post<PlanningItem>(`${this.getEnvUrl()}/api/planning`, data);
     }
 
-    updatePlan(id: number, name: string, date: string, description: string): Observable<PlanningItem> {
+    updatePlan(id: number, name: string, date: string, description: string, isPrivate: boolean): Observable<PlanningItem> {
         let data = new FormData();
         data.append('name', name);
         data.append('plannedDate', date);
         if (description)
             data.append('description', description);
+        data.append('isPrivate', isPrivate.toString());
         return this.http.put<PlanningItem>(`${this.getEnvUrl()}/api/planning/${id}`, data);
     }
 

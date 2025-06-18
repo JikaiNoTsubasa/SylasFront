@@ -29,6 +29,7 @@ export class PlanningComponent {
     name: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
     description: new FormControl(''),
+    isPrivate: new FormControl(false)
   });
 
   constructor(){
@@ -97,6 +98,7 @@ export class PlanningComponent {
         name: item.name,
         date: this.formatDateForInput(new Date(item.plannedDate)),
         description: item.description,
+        isPrivate: item.owner != null
       }
     )
     this.popupService.open(template, context);
@@ -129,7 +131,8 @@ export class PlanningComponent {
       let name: string = this.formAddPlan.value.name ?? "Default Name";
       let date: string = this.formAddPlan.value.date ?? new Date().toISOString();
       let description: string = this.formAddPlan.value.description ?? "";
-      this.syService.createPlan(name, date, description).subscribe({
+      let isPrivate: boolean = this.formAddPlan.value.isPrivate ?? false;
+      this.syService.createPlan(name, date, description, isPrivate).subscribe({
         next: (data) => {
           this.popupService.close();
           this.refreshData();
@@ -146,7 +149,8 @@ export class PlanningComponent {
       let name: string = this.formAddPlan.value.name ?? "Default Name";
       let date: string = this.formAddPlan.value.date ?? new Date().toISOString();
       let description: string = this.formAddPlan.value.description ?? "";
-      this.syService.updatePlan(this.selectedItem.id, name, date, description).subscribe({
+      let isPrivate: boolean = this.formAddPlan.value.isPrivate ?? false;
+      this.syService.updatePlan(this.selectedItem.id, name, date, description, isPrivate).subscribe({
         next: (data) => {
           this.popupService.close();
           this.refreshData();
