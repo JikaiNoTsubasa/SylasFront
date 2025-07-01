@@ -1,0 +1,21 @@
+@use '../../styles/variables' as *;
+
+.gallery-content{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-around;*/
+    align-items: left;
+    gap: 10px;
+}
+
+.gallery-item{
+    width: 100px;
+    height: 100px;
+    background-color: $fg-menu;
+    color: $fg-main;
+    display: flex;
+    /*flex-basis: calc(33.33% - 10px);*/
+    border: 1px solid $fg-main;
+    box-sizing: border-box;
+}

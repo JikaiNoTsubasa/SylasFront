@@ -26,6 +26,9 @@
                             <div class="sy-customer-item">
                                 {{project.customer?.name}}
                             </div>
+                            <h1>Gallery</h1>
+                            <img-gallery [items]="galleryItems"></img-gallery>
+                            
                             <h1>Issues</h1>
                             <button class="sy-button" (click)="openNewIssue(newIssueTemplate, {title: 'New Issue'})">New Issue</button>
                             <div style="margin-top: 20px;">

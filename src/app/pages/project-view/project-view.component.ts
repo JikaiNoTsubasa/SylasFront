@@ -14,11 +14,12 @@ import { TabComponent } from "../../comps/tab/tab.component";
 import { TabsComponent } from '../../comps/tabs/tabs.component';
 import { Document } from '../../Models/Database/Document';
 import { DocumentComponent } from "../../comps/document/document.component";
+import { GalleryImage, ImgGalleryComponent } from "../../comps/img-gallery/img-gallery.component";
 
 @Component({
   selector: 'app-project-view',
   standalone: true,
-  imports: [CommonModule, MkFieldComponent, RouterModule, ReactiveFormsModule, MarkdownModule, TabsComponent, TabComponent, DocumentComponent],
+  imports: [CommonModule, MkFieldComponent, RouterModule, ReactiveFormsModule, MarkdownModule, TabsComponent, TabComponent, DocumentComponent, ImgGalleryComponent],
   templateUrl: './project-view.component.html',
   styleUrl: './project-view.component.scss'
 })
@@ -76,6 +77,98 @@ export class ProjectViewComponent {
   addDocumentForm = new FormGroup({
     file: new FormControl('', Validators.required),
   });
+
+  // Gallery
+  galleryItems: GalleryImage[] = [
+    {
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-icon.png',
+      alt: 'Sylas'
+    },{
+      src: '/images/sy-iconkkk.png',
+      alt: 'Sylas'
+    },
+  ];
 
   ngOnInit(){
     this.refreshProject();
